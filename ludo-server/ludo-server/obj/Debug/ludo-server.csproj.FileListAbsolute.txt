@@ -1,0 +1,7 @@
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\bin\Debug\ludo-server.exe.config
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\bin\Debug\ludo-server.exe
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\bin\Debug\ludo-server.pdb
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\bin\Debug\Fleck.dll
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\obj\Debug\ludo-server.csprojResolveAssemblyReference.cache
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\obj\Debug\ludo-server.exe
+c:\users\cir0x\documents\visual studio 2012\Projects\ludo-server\ludo-server\obj\Debug\ludo-server.pdb
