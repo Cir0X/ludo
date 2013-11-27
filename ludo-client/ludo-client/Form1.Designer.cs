@@ -35,13 +35,11 @@
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rootPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.connectButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.nickNameLabel = new System.Windows.Forms.Label();
             this.serverLabel = new System.Windows.Forms.Label();
-            this.portLabel = new System.Windows.Forms.Label();
+            this.nickNameLabel = new System.Windows.Forms.Label();
+            this.userNameTextBox = new System.Windows.Forms.TextBox();
+            this.serverTextBox = new System.Windows.Forms.TextBox();
+            this.connectButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.rootPanel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -99,64 +97,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.WindowFrame;
-            this.panel1.Controls.Add(this.portLabel);
             this.panel1.Controls.Add(this.serverLabel);
             this.panel1.Controls.Add(this.nickNameLabel);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.userNameTextBox);
+            this.panel1.Controls.Add(this.serverTextBox);
             this.panel1.Controls.Add(this.connectButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(784, 516);
             this.panel1.TabIndex = 0;
-            // 
-            // connectButton
-            // 
-            this.connectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.connectButton.Location = new System.Drawing.Point(306, 172);
-            this.connectButton.Name = "connectButton";
-            this.connectButton.Size = new System.Drawing.Size(81, 29);
-            this.connectButton.TabIndex = 0;
-            this.connectButton.Text = "Connect";
-            this.connectButton.UseVisualStyleBackColor = true;
-            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(306, 105);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 26);
-            this.textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(306, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(159, 26);
-            this.textBox2.TabIndex = 2;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(530, 108);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(33, 26);
-            this.textBox3.TabIndex = 3;
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // nickNameLabel
-            // 
-            this.nickNameLabel.AutoSize = true;
-            this.nickNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nickNameLabel.Location = new System.Drawing.Point(217, 75);
-            this.nickNameLabel.Name = "nickNameLabel";
-            this.nickNameLabel.Size = new System.Drawing.Size(83, 20);
-            this.nickNameLabel.TabIndex = 4;
-            this.nickNameLabel.Text = "Nickname:";
             // 
             // serverLabel
             // 
@@ -169,15 +119,44 @@
             this.serverLabel.Text = "Server:";
             this.serverLabel.Click += new System.EventHandler(this.serverLabel_Click);
             // 
-            // portLabel
+            // nickNameLabel
             // 
-            this.portLabel.AutoSize = true;
-            this.portLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.portLabel.Location = new System.Drawing.Point(482, 111);
-            this.portLabel.Name = "portLabel";
-            this.portLabel.Size = new System.Drawing.Size(42, 20);
-            this.portLabel.TabIndex = 6;
-            this.portLabel.Text = "Port:";
+            this.nickNameLabel.AutoSize = true;
+            this.nickNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nickNameLabel.Location = new System.Drawing.Point(217, 75);
+            this.nickNameLabel.Name = "nickNameLabel";
+            this.nickNameLabel.Size = new System.Drawing.Size(83, 20);
+            this.nickNameLabel.TabIndex = 4;
+            this.nickNameLabel.Text = "Nickname:";
+            // 
+            // userNameTextBox
+            // 
+            this.userNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userNameTextBox.Location = new System.Drawing.Point(306, 69);
+            this.userNameTextBox.Name = "userNameTextBox";
+            this.userNameTextBox.Size = new System.Drawing.Size(159, 26);
+            this.userNameTextBox.TabIndex = 2;
+            this.userNameTextBox.Text = "Cir0X";
+            // 
+            // serverTextBox
+            // 
+            this.serverTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.serverTextBox.Location = new System.Drawing.Point(306, 105);
+            this.serverTextBox.Name = "serverTextBox";
+            this.serverTextBox.Size = new System.Drawing.Size(159, 26);
+            this.serverTextBox.TabIndex = 1;
+            this.serverTextBox.Text = "localhost";
+            // 
+            // connectButton
+            // 
+            this.connectButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.connectButton.Location = new System.Drawing.Point(306, 146);
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Size = new System.Drawing.Size(159, 29);
+            this.connectButton.TabIndex = 0;
+            this.connectButton.Text = "Connect";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.connectButton_Click);
             // 
             // ludoForm
             // 
@@ -210,11 +189,9 @@
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.Panel rootPanel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox userNameTextBox;
+        private System.Windows.Forms.TextBox serverTextBox;
         private System.Windows.Forms.Button connectButton;
-        private System.Windows.Forms.Label portLabel;
         private System.Windows.Forms.Label serverLabel;
         private System.Windows.Forms.Label nickNameLabel;
     }

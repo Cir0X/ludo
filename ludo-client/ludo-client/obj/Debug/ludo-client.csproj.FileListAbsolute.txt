@@ -7,3 +7,15 @@ c:\users\cir0x\documents\visual studio 2012\Projects\ludo-client\ludo-client\obj
 c:\users\cir0x\documents\visual studio 2012\Projects\ludo-client\ludo-client\obj\Debug\ludo-client.exe
 c:\users\cir0x\documents\visual studio 2012\Projects\ludo-client\ludo-client\obj\Debug\ludo-client.pdb
 c:\users\cir0x\documents\visual studio 2012\Projects\ludo-client\ludo-client\obj\Debug\ludo_client.ludoForm.resources
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\ludo-client.exe.config
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-client.exe
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-client.pdb
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\ludo-client.exe
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\ludo-client.pdb
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\Newtonsoft.Json.xml
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-client.csprojResolveAssemblyReference.cache
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo_client.ludoForm.resources
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo_client.Properties.Resources.resources
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-client.csproj.GenerateResource.Cache
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\bin\Debug\WebSocket4Net.dll

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Fleck;
+using ludo_server.dto;
 
 namespace ludo_server
 {
@@ -11,16 +12,9 @@ namespace ludo_server
     {
         static void Main(string[] args)
         {
-            var server = new WebSocketServer("ws://localhost:1337");
-            server.Start(socket =>
-            {
-                socket.OnOpen = () => Console.WriteLine("Open!");
-                socket.OnClose = () => Console.WriteLine("Close!");
-                socket.OnMessage = message => socket.Send(message);
-            });
-            Console.WriteLine("Press any Key to stop");
-            Console.ReadLine();
-
+            Ludo ludo = new Ludo();
+            Authenticate authenticate = new Authenticate(ludo);
+            Chat chat = new Chat();
         }
     }
 }
