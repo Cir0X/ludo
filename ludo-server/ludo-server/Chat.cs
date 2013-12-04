@@ -24,6 +24,6 @@ namespace ludo_server
                 };
             });
             var input = Console.ReadLine();
-        }
+    }
     }
 }

@@ -11,7 +11,6 @@ namespace ludo_server
 {
     class Authenticate
     {
-
         private Ludo ludo;
         private User user;
         public Authenticate(Ludo ludo)
@@ -30,7 +29,7 @@ namespace ludo_server
         {
             Guid socketID = socket.ConnectionInfo.Id;
             Console.WriteLine("JSON: " + jsonMessage);
-             this.user = JsonConvert.DeserializeObject<User>(jsonMessage);
+            this.user = JsonConvert.DeserializeObject<User>(jsonMessage);
             if (!isUserNameAlreadyInUse())
             {
                 ludo.Users.Add(this.user);
@@ -42,7 +41,7 @@ namespace ludo_server
             }
             else
             {
-                socket.Send("{ \"isUserNameAlreadyInUse\":true }");
+                socket.Send("Username is already in use");
             }
         }
 
@@ -58,10 +57,8 @@ namespace ludo_server
                 if (ludo.Users[i].UserName == this.user.UserName)  {
                     return true;
                 } 
-
             }
             return false;
         }
-
     }
 }

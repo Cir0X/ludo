@@ -17,13 +17,13 @@ namespace ludo_client.dto
             get { return userName; }
             set { userName = value; }
         }
-        
+
         public Guid SocketID
         {
             get { return socketID; }
             set { socketID = value; }
         }
-        
+
         public String CurrentRoom
         {
             get { return currentRoom; }

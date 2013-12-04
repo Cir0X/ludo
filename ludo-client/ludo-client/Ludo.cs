@@ -21,12 +21,13 @@ namespace ludo_client.dto
         public String ServerAdress
         {
             get { return serverAdress; }
-            set { serverAdress = "ws://" + value; }
+            set { serverAdress = value; }
         }
 
         public Ludo()
         {
             this.users = new List<User>();
+            //this.user = new User();
         }
     }
 }
