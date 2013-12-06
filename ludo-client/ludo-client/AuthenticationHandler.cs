@@ -13,33 +13,55 @@ namespace ludo_client
     class AuthenticationHandler
     {
         private String PORT_ROUTE = ":5000/authenticate";
-        private Ludo ludo;
         private WebSocket webSocket;
+        private User user;
 
-        public AuthenticationHandler(Ludo ludo)
+        public AuthenticationHandler(User user)
         {
-            this.ludo = ludo;
-
-            //User user = new User();
-            //user.UserName = "Nummer1";
-            //ludo.Users.Add(user);
-            MessageBox.Show(ludo.ServerAdress + PORT_ROUTE);
-            webSocket = new WebSocket("ws://" + ludo.ServerAdress + PORT_ROUTE);
+            this.user = user;
+            webSocket = new WebSocket("ws://" + ClientBase.serverAdress + PORT_ROUTE);
             webSocket.Opened += new EventHandler(authenticate);
             //webSocket.Closed += new EventHandler(websocket_Closed);
-            webSocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(isUserNameInUse);
+            webSocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(receiveThisUserObject);
             webSocket.Open();
+        }
+
+        ~AuthenticationHandler()
+        {
+            this.webSocket.Close();
         }
 
         private void authenticate(object sender, EventArgs e)
         {
-            String jsonMessage = JsonConvert.SerializeObject(ludo.Users.First());
-            webSocket.Send(jsonMessage);
+            webSocket.Send(JsonConvert.SerializeObject(this.user));
         }
 
-        private void isUserNameInUse(object sender, MessageReceivedEventArgs args)
+        private void receiveThisUserObject(object sender, MessageReceivedEventArgs args)
         {
-            MessageBox.Show(args.Message);
+            var jsonString = JsonConvert.DeserializeObject<User>(args.Message);
+            int userListIndex = jsonString.UserListIndex;
+            this.user = JsonConvert.DeserializeObject<User>(args.Message); // receiving my user object
+            Main.ludo.Users.Add(this.user);
+            if (isUserNameAvailable())
+            {
+                ClientBase.myUserListIndex = userListIndex;
+            }
+            else
+            {
+                MessageBox.Show("Username is already used");
+            }
+        }
+
+        private bool isUserNameAvailable()
+        {
+            if (this.user.IsUserNameAvailable)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

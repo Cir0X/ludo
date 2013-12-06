@@ -11,11 +11,20 @@ namespace ludo_client.dto
         private String userName;
         private String currentRoom;
         private Guid socketID;
+        private int userListIndex;
+        private bool handshaked;
+        private bool isUserNameAvailable;
 
         public String UserName
         {
             get { return userName; }
             set { userName = value; }
+        }
+
+        public String CurrentRoom
+        {
+            get { return currentRoom; }
+            set { currentRoom = value; }
         }
 
         public Guid SocketID
@@ -24,10 +33,23 @@ namespace ludo_client.dto
             set { socketID = value; }
         }
 
-        public String CurrentRoom
+        public int UserListIndex
         {
-            get { return currentRoom; }
-            set { currentRoom = value; }
+            get { return userListIndex; }
+            set { userListIndex = value; }
         }
+
+        public bool Handshaked
+        {
+            get { return handshaked; }
+            set { handshaked = value; }
+        }
+
+        public bool IsUserNameAvailable
+        {
+            get { return isUserNameAvailable; }
+            set { isUserNameAvailable = value; }
+        }
+
     }
 }

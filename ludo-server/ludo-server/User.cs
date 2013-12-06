@@ -11,6 +11,9 @@ namespace ludo_server.dto
         private String userName;
         private String currentRoom;
         private Guid socketID;
+        private int userListIndex;
+        private bool handshaked;
+        private bool isUserNameAvailable;
 
         public String UserName
         {
@@ -28,6 +31,24 @@ namespace ludo_server.dto
         {
             get { return currentRoom; }
             set { currentRoom = value; }
+        }
+
+        public int UserListIndex
+        {
+            get { return userListIndex; }
+            set { userListIndex = value; }
+        }
+
+        public bool Handshaked
+        {
+            get { return handshaked; }
+            set { handshaked = value; }
+        }
+
+        public bool IsUserNameAvailable
+        {
+            get { return isUserNameAvailable; }
+            set { isUserNameAvailable = value; }
         }
     }
 }

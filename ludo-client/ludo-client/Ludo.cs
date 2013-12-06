@@ -10,7 +10,7 @@ namespace ludo_client.dto
     class Ludo
     {
         private List<User> users;
-        private String serverAdress;
+        private List<Message> chat;
 
         public List<User> Users
         {
@@ -18,16 +18,16 @@ namespace ludo_client.dto
             set { users = value; }
         }
 
-        public String ServerAdress
+        public List<Message> Chat
         {
-            get { return serverAdress; }
-            set { serverAdress = value; }
+            get { return chat; }
+            set { chat = value; }
         }
 
         public Ludo()
         {
             this.users = new List<User>();
-            //this.user = new User();
+            this.chat = new List<Message>();
         }
     }
 }
