@@ -7,6 +7,8 @@ using WebSocket4Net;
 using ludo_client.dto;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using ludo_client.extensions;
+using System.Drawing;
 
 namespace ludo_client
 {
@@ -14,13 +16,13 @@ namespace ludo_client
     {
         private String PORT_ROUTE = ":5002/chat";
         private WebSocket websocket;
-        private ListView messageList;
+        private RichTextBox messageList;
 
-        public ChatHandler(ListView messageList)
+        public ChatHandler(RichTextBox messageList)
         {
             this.messageList = messageList;
             websocket = new WebSocket("ws://" + ClientBase.serverAdress + PORT_ROUTE);
-            websocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(handleChat);
+            websocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(receiveChat);
             websocket.Open();
         }
 
@@ -29,33 +31,39 @@ namespace ludo_client
             this.websocket.Close();
         }
 
-        public void sendMessage()
+        public void sendMessage(ludo_client.dto.Message message)
         {
-            websocket.Send(JsonConvert.SerializeObject(Main.ludo.Chat.Count - 1));
+            websocket.Send(JsonConvert.SerializeObject(message));
         }
 
-        public void handleChat(object sender, MessageReceivedEventArgs args)
+        public void receiveChat(object sender, MessageReceivedEventArgs args)
         {
-            updateOnlineUserList(this.messageList);
+            ludo_client.dto.Message newIncomingMessage = JsonConvert.DeserializeObject<ludo_client.dto.Message>(args.Message);
+            updateOnlineUserList(this.messageList, newIncomingMessage);
         }
 
-        public void updateOnlineUserList(ListView messageList)
+        public void updateOnlineUserList(RichTextBox messageList, ludo_client.dto.Message newIncomingMessage)
         {
             if (messageList.InvokeRequired)
             {
                 // We're on a thread other than the GUI thread
-                messageList.Invoke(new MethodInvoker(() => updateOnlineUserList(messageList)));
+                messageList.Invoke(new MethodInvoker(() => updateOnlineUserList(messageList, newIncomingMessage)));
                 return;
             }
-            foreach (var user in Main.ludo.Users)
+            //int lastMessage = Main.ludo.Chat.Count() - 1;
+            String timeStampSecond = newIncomingMessage.TimeStamp.Second.ToString();
+            if (timeStampSecond.Length == 1)
             {
-                int lastMessage = Main.ludo.Chat.Count() - 1;
-                String timeStamp = "[" + Main.ludo.Chat[lastMessage].TimeStamp + "]";
-                String sender = Main.ludo.Chat[lastMessage].Sender.UserName;
-                String message = Main.ludo.Chat[lastMessage].Msg;
-                messageList.Items.Add(timeStamp + " " + sender + ": " + message);
+                timeStampSecond = "0" + timeStampSecond;
             }
+            String timeStamp = "[" + newIncomingMessage.TimeStamp.ToShortTimeString() +
+                ":" + timeStampSecond  + "]";
+            String sender = newIncomingMessage.Sender.UserName;
+            String message = newIncomingMessage.Msg;
+            messageList.AppendText(timeStamp + " ", Color.Gray);
+            messageList.AppendText(sender + ": " , Color.Blue);
+            messageList.AppendText(message + "\n");
+            messageList.ScrollToCaret();
         }
-
     }
 }

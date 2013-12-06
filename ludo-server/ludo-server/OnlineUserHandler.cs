@@ -45,10 +45,7 @@ namespace ludo_server
         }
 
         private void sendOnlineUsers(IWebSocketConnection socket)
-        {
-            Console.WriteLine("Count: " + Main.ludo.Users.Count);
-            Console.WriteLine("[OnlineUsers] Outgoin: " + JsonConvert.SerializeObject(Main.ludo));
-            
+        {            
             foreach (var s in onlineUserSocketList.ToList())
             {
                 s.Send(JsonConvert.SerializeObject(Main.ludo));

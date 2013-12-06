@@ -64,28 +64,27 @@ namespace ludo_client
 
                 rootConnectTableLayout.Hide();
                 rootServerTableLayout.Show();
-                //printOnlineUsers();
+                messageTextBox.Focus();
             }
             else
             {
                 MessageBox.Show("Authentication failed!");
+                ClientBase.myUserListIndex = -1;
+                Main.ludo.Users.Clear();
                 //connectButton.Enabled = true;
             }
         }
 
         private bool authenticationSuceed()
         {
-            while (!handshaked()); // wait until the authentication succeed
-            if (ClientBase.myUserListIndex != -1 && Main.ludo.Users[0].IsUserNameAvailable)
+            while (!handshaked())
             {
-                return true; // when username is avaible and request is through
+                if (isUserNameAvailable())
+                {
+                    return true;
+                }
             }
-            else
-            {
-                //Main.ludo.Users.Remove(this.user);
-                //ClientBase.myUserListIndex = -1;
-                return false;
-            }
+            return false;
         }
 
         private bool handshaked()
@@ -97,6 +96,18 @@ namespace ludo_client
             else
             {
                 return false; // Not authenticated yet
+            }
+        }
+
+        private bool isUserNameAvailable()
+        {
+            if (ClientBase.myUserListIndex != -1 && Main.ludo.Users[0].IsUserNameAvailable)
+            {
+                return true; // Username is available
+            }
+            else
+            {
+                return false; // Username isn't available
             }
         }
 
@@ -115,17 +126,27 @@ namespace ludo_client
 
         private void sendMessageButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Send Button Clicked");
-            ludo_client.dto.Message message = new ludo_client.dto.Message();
-            foreach (var user in Main.ludo.Users)
+            if (!messageTextBox.Text.Equals("") && !messageTextBox.Text.Equals(" "))
             {
+                ludo_client.dto.Message message = new ludo_client.dto.Message();
                 message.Sender = Main.ludo.Users[ClientBase.myUserListIndex];
-
+                message.Msg = messageTextBox.Text;
+                //Main.ludo.Chat.Add(message);
+                this.chatHandler.sendMessage(message);
+                messageTextBox.Clear();
+                messageTextBox.Focus();
             }
-            message.Msg = messageTextBox.Text;
-            Main.ludo.Chat.Add(message);
-            this.chatHandler.sendMessage();
         }
+
+        // messageTextBox event listener
+        private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                sendMessageButton.PerformClick();
+            }
+        }
+
     }
 }
 

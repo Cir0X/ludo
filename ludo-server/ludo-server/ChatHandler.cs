@@ -19,8 +19,9 @@ namespace ludo_server
             server.Start(socket =>
             {
                 socket.OnOpen = () => {
+                    Console.WriteLine("User connected to Chat");
                     chatSocketList.Add(socket);
-                    socket.Send(JsonConvert.SerializeObject(Main.ludo.Chat));
+                    //socket.Send(JsonConvert.SerializeObject(Main.ludo.Chat));
                 };
 
                 socket.OnClose = () => {
@@ -29,12 +30,13 @@ namespace ludo_server
 
                 socket.OnMessage = message =>
                 {
+                    Console.WriteLine("[ChatHandler] Incoming: " + message);
                     Message msg = JsonConvert.DeserializeObject<Message>(message);
                     msg.TimeStamp = DateTime.Now;
                     Main.ludo.Chat.Add(msg);
                     foreach (var s in chatSocketList.ToList())
                     {
-                        s.Send(JsonConvert.SerializeObject(Main.ludo.Chat.Count -1));
+                        s.Send(JsonConvert.SerializeObject(msg));
                     }
                 };
             });

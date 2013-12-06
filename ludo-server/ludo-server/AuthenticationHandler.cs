@@ -38,15 +38,13 @@ namespace ludo_server
                 Main.ludo.Users.Add(this.user); // Add this User for the online user list
                 setUserListID();
 
-                Console.WriteLine("[Authenticate] Outgoing: " + JsonConvert.SerializeObject(this.user));
                 socket.Send(JsonConvert.SerializeObject(this.user)); // Desiralize from Object to Json | Sending 1 user object
             }
             else
             {
                 // Username isn't available
                 this.user.IsUserNameAvailable = false;
-                this.user.UserListIndex = -1;
-                Console.WriteLine("[Authenticate] Outgoing: " + JsonConvert.SerializeObject(this.user));
+                //this.user.UserListIndex = -1;
                 socket.Send(JsonConvert.SerializeObject(this.user));
             }
         }

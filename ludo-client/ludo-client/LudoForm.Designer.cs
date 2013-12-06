@@ -46,7 +46,7 @@
             this.messageTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.sendMessageButton = new System.Windows.Forms.Button();
-            this.messageList = new System.Windows.Forms.ListView();
+            this.messageList = new System.Windows.Forms.RichTextBox();
             this.onlineUserList = new System.Windows.Forms.ListView();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
@@ -216,25 +216,25 @@
             this.serverTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this.serverTableLayout.Name = "serverTableLayout";
             this.serverTableLayout.RowCount = 2;
-            this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73.73068F));
-            this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.26932F));
+            this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.4724F));
+            this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.5276F));
             this.serverTableLayout.Size = new System.Drawing.Size(621, 453);
             this.serverTableLayout.TabIndex = 1;
             // 
             // chatTableLayout
             // 
+            this.chatTableLayout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chatTableLayout.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.chatTableLayout.ColumnCount = 1;
             this.chatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.chatTableLayout.Controls.Add(this.messageTableLayout, 0, 1);
             this.chatTableLayout.Controls.Add(this.messageList, 0, 0);
-            this.chatTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatTableLayout.Location = new System.Drawing.Point(3, 336);
+            this.chatTableLayout.Location = new System.Drawing.Point(3, 285);
             this.chatTableLayout.Name = "chatTableLayout";
             this.chatTableLayout.RowCount = 2;
-            this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 76.78571F));
-            this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 23.21428F));
-            this.chatTableLayout.Size = new System.Drawing.Size(615, 114);
+            this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.24242F));
+            this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.75758F));
+            this.chatTableLayout.Size = new System.Drawing.Size(615, 165);
             this.chatTableLayout.TabIndex = 0;
             // 
             // messageTableLayout
@@ -244,7 +244,7 @@
             this.messageTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.30928F));
             this.messageTableLayout.Controls.Add(this.messageTextBox, 0, 0);
             this.messageTableLayout.Controls.Add(this.sendMessageButton, 1, 0);
-            this.messageTableLayout.Location = new System.Drawing.Point(0, 87);
+            this.messageTableLayout.Location = new System.Drawing.Point(0, 138);
             this.messageTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this.messageTableLayout.Name = "messageTableLayout";
             this.messageTableLayout.RowCount = 1;
@@ -255,13 +255,14 @@
             // messageTextBox
             // 
             this.messageTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.messageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageTextBox.Location = new System.Drawing.Point(0, 0);
+            this.messageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageTextBox.Location = new System.Drawing.Point(0, 2);
             this.messageTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.messageTextBox.MaxLength = 20;
+            this.messageTextBox.MaxLength = 50;
             this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(532, 26);
+            this.messageTextBox.Size = new System.Drawing.Size(532, 22);
             this.messageTextBox.TabIndex = 0;
+            this.messageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyDown);
             // 
             // sendMessageButton
             // 
@@ -281,12 +282,13 @@
             this.messageList.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.messageList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.messageList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageList.Location = new System.Drawing.Point(0, 0);
-            this.messageList.Margin = new System.Windows.Forms.Padding(0);
+            this.messageList.Location = new System.Drawing.Point(3, 3);
             this.messageList.Name = "messageList";
-            this.messageList.Size = new System.Drawing.Size(615, 87);
+            this.messageList.ReadOnly = true;
+            this.messageList.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.messageList.Size = new System.Drawing.Size(609, 132);
             this.messageList.TabIndex = 2;
-            this.messageList.UseCompatibleStateImageBehavior = false;
+            this.messageList.Text = "";
             // 
             // onlineUserList
             // 
@@ -364,7 +366,7 @@
         private System.Windows.Forms.TableLayoutPanel messageTableLayout;
         private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.Button sendMessageButton;
-        private System.Windows.Forms.ListView messageList;
+        private System.Windows.Forms.RichTextBox messageList;
     }
 }
 
