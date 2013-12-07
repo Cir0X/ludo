@@ -223,12 +223,12 @@
             // 
             // chatTableLayout
             // 
-            this.chatTableLayout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.chatTableLayout.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.chatTableLayout.ColumnCount = 1;
             this.chatTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.chatTableLayout.Controls.Add(this.messageTableLayout, 0, 1);
             this.chatTableLayout.Controls.Add(this.messageList, 0, 0);
+            this.chatTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chatTableLayout.Location = new System.Drawing.Point(3, 285);
             this.chatTableLayout.Name = "chatTableLayout";
             this.chatTableLayout.RowCount = 2;
@@ -254,9 +254,9 @@
             // 
             // messageTextBox
             // 
-            this.messageTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.messageTextBox.Dock = System.Windows.Forms.DockStyle.Left;
             this.messageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageTextBox.Location = new System.Drawing.Point(0, 2);
+            this.messageTextBox.Location = new System.Drawing.Point(0, 0);
             this.messageTextBox.Margin = new System.Windows.Forms.Padding(0);
             this.messageTextBox.MaxLength = 50;
             this.messageTextBox.Name = "messageTextBox";
@@ -266,7 +266,7 @@
             // 
             // sendMessageButton
             // 
-            this.sendMessageButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.sendMessageButton.Dock = System.Windows.Forms.DockStyle.Right;
             this.sendMessageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sendMessageButton.Location = new System.Drawing.Point(532, 0);
             this.sendMessageButton.Margin = new System.Windows.Forms.Padding(0);
@@ -292,9 +292,9 @@
             // 
             // onlineUserList
             // 
-            this.onlineUserList.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.onlineUserList.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.onlineUserList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.onlineUserList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onlineUserList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onlineUserList.FullRowSelect = true;
             this.onlineUserList.GridLines = true;

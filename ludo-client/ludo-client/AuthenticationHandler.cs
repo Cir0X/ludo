@@ -41,7 +41,7 @@ namespace ludo_client
             var jsonString = JsonConvert.DeserializeObject<User>(args.Message);
             int userListIndex = jsonString.UserListIndex;
             this.user = JsonConvert.DeserializeObject<User>(args.Message); // receiving my user object
-            Main.ludo.Users.Add(this.user);
+            Main.ludo.Users[0] = this.user;
             if (isUserNameAvailable())
             {
                 ClientBase.myUserListIndex = userListIndex;

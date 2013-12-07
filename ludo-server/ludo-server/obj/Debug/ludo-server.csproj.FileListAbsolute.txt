@@ -14,3 +14,12 @@ C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-server\ludo-serve
 C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-server\ludo-server\obj\Debug\ludo-server.csprojResolveAssemblyReference.cache
 C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-server\ludo-server\bin\Debug\Newtonsoft.Json.dll
 C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-server\ludo-server\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\ludo-server.exe.config
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\obj\Debug\ludo-server.exe
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\obj\Debug\ludo-server.pdb
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\ludo-server.exe
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\ludo-server.pdb
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\Fleck.dll
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Cir0X\Documents\Projects\ludo\ludo-server\ludo-server\obj\Debug\ludo-server.csprojResolveAssemblyReference.cache

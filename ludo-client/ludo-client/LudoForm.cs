@@ -53,7 +53,7 @@ namespace ludo_client
 
             user = new User();
             user.UserName = userName;
-            //Main.ludo.Users.Add(user);
+            Main.ludo.Users.Add(user);
 
             authenticationHandler = new AuthenticationHandler(user);
 
@@ -77,19 +77,20 @@ namespace ludo_client
 
         private bool authenticationSuceed()
         {
-            while (!handshaked())
+            while (!handshaked()); // wait for handshake with server
+            if (isUserNameAvailable())
             {
-                if (isUserNameAvailable())
-                {
-                    return true;
-                }
+                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
         }
 
         private bool handshaked()
         {
-            if (ClientBase.myUserListIndex != -1 && Main.ludo.Users[0].Handshaked)
+            if (Main.ludo.Users[0].Handshaked)
             {
                 return true; // Successfully authenticated
             }
@@ -101,7 +102,7 @@ namespace ludo_client
 
         private bool isUserNameAvailable()
         {
-            if (ClientBase.myUserListIndex != -1 && Main.ludo.Users[0].IsUserNameAvailable)
+            if (Main.ludo.Users[0].IsUserNameAvailable)
             {
                 return true; // Username is available
             }
