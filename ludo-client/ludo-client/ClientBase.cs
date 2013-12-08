@@ -10,5 +10,16 @@ namespace ludo_client
     {
         public static String serverAdress;
         public static int myUserListIndex = -1;
+        private short connectionCount;
+
+        public void addConnetionCount()
+        {
+            this.connectionCount++;
+        }
+
+        public void removeConnectionCount()
+        {
+            this.connectionCount--;
+        }
     }
 }

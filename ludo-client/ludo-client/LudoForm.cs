@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ludo_client.dto;
@@ -45,7 +46,8 @@ namespace ludo_client
 
         private void connectButton_Click(object sender, EventArgs e)
         {
-            //connectButton.Enabled = false;
+            connectButton.Enabled = false;
+            
             Main main = new Main(); // Run Construtor of Main to initialize Main Ludo Object
             String serverAdress = serverTextBox.Text;
             String userName = userNameTextBox.Text;
@@ -65,13 +67,13 @@ namespace ludo_client
                 rootConnectTableLayout.Hide();
                 rootServerTableLayout.Show();
                 messageTextBox.Focus();
+                this.UseWaitCursor = false;
             }
             else
             {
-                MessageBox.Show("Authentication failed!");
                 ClientBase.myUserListIndex = -1;
                 Main.ludo.Users.Clear();
-                //connectButton.Enabled = true;
+                connectButton.Enabled = true;
             }
         }
 
@@ -147,7 +149,6 @@ namespace ludo_client
                 sendMessageButton.PerformClick();
             }
         }
-
     }
 }
 
