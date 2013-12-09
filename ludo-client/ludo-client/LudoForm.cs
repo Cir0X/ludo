@@ -127,22 +127,6 @@ namespace ludo_client
 
         }
 
-        private void sendMessageButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Click!");
-            if (!messageTextBox.Text.Equals("") && !messageTextBox.Text.Equals(" "))
-            {
-                MessageBox.Show("Send message");
-                ludo_client.dto.Message message = new ludo_client.dto.Message();
-                message.Sender = Main.ludo.Users[ClientBase.myUserListIndex];
-                message.Msg = messageTextBox.Text;
-                //Main.ludo.Chat.Add(message);
-                this.chatHandler.sendMessage(message);
-                messageTextBox.Clear();
-                messageTextBox.Focus();
-            }
-        }
-
         // messageTextBox event listener
         private void messageTextBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -155,6 +139,20 @@ namespace ludo_client
         private void createRoomButton_Click(object sender, EventArgs e)
         {
             //Room room = new Room();
+        }
+
+        private void sendMessageButton_Click(object sender, EventArgs e)
+        {
+            if (!messageTextBox.Text.Equals("") && !messageTextBox.Text.Equals(" "))
+            {
+                ludo_client.dto.Message message = new ludo_client.dto.Message();
+                message.Sender = Main.ludo.Users[ClientBase.myUserListIndex];
+                message.Msg = messageTextBox.Text;
+                //Main.ludo.Chat.Add(message);
+                this.chatHandler.sendMessage(message);
+                messageTextBox.Clear();
+                messageTextBox.Focus();
+            }
         }
     }
 }
