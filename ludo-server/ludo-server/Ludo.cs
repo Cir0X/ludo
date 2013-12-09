@@ -11,6 +11,7 @@ namespace ludo_server.dto
     {
         private List<User> users;
         private List<Message> chat;
+        private List<Room> rooms;
 
         public List<User> Users
         {
@@ -24,10 +25,17 @@ namespace ludo_server.dto
             set { chat = value; }
         }
 
+        public List<Room> Rooms
+        {
+            get { return rooms; }
+            set { rooms = value; }
+        }
+
         public Ludo()
         {
             this.users = new List<User>();
             this.chat = new List<Message>();
+            this.rooms = new List<Room>();
         }
     }
 }

@@ -45,14 +45,14 @@
             this.serverChatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.chatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.messageTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
+            this.sendMessageButton = new System.Windows.Forms.Button();
             this.messageList = new System.Windows.Forms.RichTextBox();
             this.serverTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.createRoomButton = new System.Windows.Forms.Button();
             this.roomList = new System.Windows.Forms.ListView();
             this.onlineUserList = new System.Windows.Forms.ListView();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.messageTextBox = new System.Windows.Forms.TextBox();
-            this.sendMessageButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.rootConnectTableLayout.SuspendLayout();
@@ -267,6 +267,29 @@
             this.messageTableLayout.Size = new System.Drawing.Size(615, 27);
             this.messageTableLayout.TabIndex = 1;
             // 
+            // messageTextBox
+            // 
+            this.messageTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.messageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageTextBox.Location = new System.Drawing.Point(0, 0);
+            this.messageTextBox.Margin = new System.Windows.Forms.Padding(0);
+            this.messageTextBox.MaxLength = 100;
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.Size = new System.Drawing.Size(551, 22);
+            this.messageTextBox.TabIndex = 0;
+            this.messageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyDown);
+            // 
+            // sendMessageButton
+            // 
+            this.sendMessageButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sendMessageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sendMessageButton.Location = new System.Drawing.Point(554, 3);
+            this.sendMessageButton.Name = "sendMessageButton";
+            this.sendMessageButton.Size = new System.Drawing.Size(58, 21);
+            this.sendMessageButton.TabIndex = 1;
+            this.sendMessageButton.Text = "Send";
+            this.sendMessageButton.UseVisualStyleBackColor = true;
+            // 
             // messageList
             // 
             this.messageList.BackColor = System.Drawing.SystemColors.ScrollBar;
@@ -305,6 +328,7 @@
             this.createRoomButton.TabIndex = 0;
             this.createRoomButton.Text = "Create Room";
             this.createRoomButton.UseVisualStyleBackColor = true;
+            this.createRoomButton.Click += new System.EventHandler(this.createRoomButton_Click);
             // 
             // roomList
             // 
@@ -342,29 +366,6 @@
             this.mainPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 22);
             this.mainPanel.Size = new System.Drawing.Size(722, 499);
             this.mainPanel.TabIndex = 1;
-            // 
-            // messageTextBox
-            // 
-            this.messageTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.messageTextBox.Location = new System.Drawing.Point(0, 0);
-            this.messageTextBox.Margin = new System.Windows.Forms.Padding(0);
-            this.messageTextBox.MaxLength = 100;
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(551, 22);
-            this.messageTextBox.TabIndex = 0;
-            this.messageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyDown);
-            // 
-            // sendMessageButton
-            // 
-            this.sendMessageButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sendMessageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendMessageButton.Location = new System.Drawing.Point(554, 3);
-            this.sendMessageButton.Name = "sendMessageButton";
-            this.sendMessageButton.Size = new System.Drawing.Size(58, 21);
-            this.sendMessageButton.TabIndex = 1;
-            this.sendMessageButton.Text = "Send";
-            this.sendMessageButton.UseVisualStyleBackColor = true;
             // 
             // LudoForm
             // 

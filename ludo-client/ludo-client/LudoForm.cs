@@ -129,8 +129,10 @@ namespace ludo_client
 
         private void sendMessageButton_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Click!");
             if (!messageTextBox.Text.Equals("") && !messageTextBox.Text.Equals(" "))
             {
+                MessageBox.Show("Send message");
                 ludo_client.dto.Message message = new ludo_client.dto.Message();
                 message.Sender = Main.ludo.Users[ClientBase.myUserListIndex];
                 message.Msg = messageTextBox.Text;
@@ -148,6 +150,11 @@ namespace ludo_client
             {
                 sendMessageButton.PerformClick();
             }
+        }
+
+        private void createRoomButton_Click(object sender, EventArgs e)
+        {
+            //Room room = new Room();
         }
     }
 }
