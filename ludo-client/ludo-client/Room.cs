@@ -8,11 +8,17 @@ namespace ludo_client.dto
 {
     class Room
     {
+        private int roomID;
         private String roomName;
         private List<User> usersInRoom;
-        private byte currentPlayerCount;
         private String roomStatus;
         private String roomAction;
+
+        public int RoomID
+        {
+            get { return roomID; }
+            set { roomID = value; }
+        }
 
         public String RoomName
         {
@@ -24,12 +30,6 @@ namespace ludo_client.dto
         {
             get { return usersInRoom; }
             set { usersInRoom = value; }
-        }
-
-        public byte CurrentPlayerCount
-        {
-            get { return currentPlayerCount; }
-            set { currentPlayerCount = value; }
         }
 
         public String RoomStatus

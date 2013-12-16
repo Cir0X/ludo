@@ -21,7 +21,7 @@ namespace ludo_server
                 socket.OnOpen = () =>
                 {
                     roomSocketList.Add(socket);
-                    socket.Send(JsonConvert.SerializeObject(Main.ludo.Rooms));
+                    socket.Send(JsonConvert.SerializeObject(Main.ludo));
                 };
 
                 socket.OnClose = () =>
@@ -39,16 +39,33 @@ namespace ludo_server
             Room room = JsonConvert.DeserializeObject<Room>(message);
             if (room.RoomAction.Equals("createRoom"))
             {
+                Console.WriteLine("Room " + room.RoomName + " created");
                 createRoom(room);
+            }
+            if (room.RoomID.Equals("joinRoom"))
+            {
+                joinRoom(room);
             }
         }
 
         private void createRoom(Room room)
         {
+            room.RoomID = Main.ludo.Rooms.Count; // get the room count and set it as as roomID
             Main.ludo.Rooms.Add(room);
+            sendUpdatedRoomList();
+        }
+
+        private void joinRoom(Room room)
+        {
+            Main.ludo.Rooms[room.RoomID].UsersInRoom = room.UsersInRoom;
+            sendUpdatedRoomList();
+        }
+
+        private void sendUpdatedRoomList()
+        {
             foreach (var s in roomSocketList.ToList())
             {
-                s.Send(JsonConvert.SerializeObject(room));
+                s.Send(JsonConvert.SerializeObject(Main.ludo));
             }
         }
     }

@@ -28,7 +28,6 @@ namespace ludo_server
                 {
                     removeUserSocketFromOnlineUserList(socket);
                     sendOnlineUsers(socket);
-
                 };
                 //socket.OnMessage = message => sendOnlineUsers(socket);
             });

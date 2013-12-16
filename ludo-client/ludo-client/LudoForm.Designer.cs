@@ -1,4 +1,5 @@
-﻿namespace ludo_client
+﻿using System.Windows.Forms;
+namespace ludo_client
 {
     partial class LudoForm
     {
@@ -49,9 +50,19 @@
             this.sendMessageButton = new System.Windows.Forms.Button();
             this.messageList = new System.Windows.Forms.RichTextBox();
             this.serverTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.createRoomButton = new System.Windows.Forms.Button();
+            this.roomListAndLobbyPanel = new System.Windows.Forms.Panel();
             this.roomList = new System.Windows.Forms.ListView();
+            this.roomIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.roomNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.usersInRoomColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.roomStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userInLobbyListBox = new System.Windows.Forms.ListBox();
+            this.roomControlsPanel = new System.Windows.Forms.Panel();
+            this.joinButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
+            this.createRoomButton = new System.Windows.Forms.Button();
             this.onlineUserList = new System.Windows.Forms.ListView();
+            this.userNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -62,6 +73,8 @@
             this.chatTableLayout.SuspendLayout();
             this.messageTableLayout.SuspendLayout();
             this.serverTableLayout.SuspendLayout();
+            this.roomListAndLobbyPanel.SuspendLayout();
+            this.roomControlsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +86,7 @@
             this.settingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(722, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(844, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -102,9 +115,9 @@
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pingStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 477);
+            this.statusStrip.Location = new System.Drawing.Point(0, 538);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(722, 22);
+            this.statusStrip.Size = new System.Drawing.Size(844, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
@@ -124,8 +137,8 @@
             this.rootConnectTableLayout.Name = "rootConnectTableLayout";
             this.rootConnectTableLayout.RowCount = 1;
             this.rootConnectTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 67.45283F));
-            this.rootConnectTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 453F));
-            this.rootConnectTableLayout.Size = new System.Drawing.Size(722, 453);
+            this.rootConnectTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 514F));
+            this.rootConnectTableLayout.Size = new System.Drawing.Size(844, 514);
             this.rootConnectTableLayout.TabIndex = 2;
             // 
             // connectTableLayout
@@ -139,7 +152,7 @@
             this.connectTableLayout.Controls.Add(this.serverTextBox, 1, 1);
             this.connectTableLayout.Controls.Add(this.serverLabel, 0, 1);
             this.connectTableLayout.Controls.Add(this.userNameTextBox, 1, 0);
-            this.connectTableLayout.Location = new System.Drawing.Point(267, 163);
+            this.connectTableLayout.Location = new System.Drawing.Point(328, 193);
             this.connectTableLayout.Name = "connectTableLayout";
             this.connectTableLayout.RowCount = 3;
             this.connectTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -216,7 +229,7 @@
             this.rootServerTableLayout.Name = "rootServerTableLayout";
             this.rootServerTableLayout.RowCount = 1;
             this.rootServerTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.rootServerTableLayout.Size = new System.Drawing.Size(722, 453);
+            this.rootServerTableLayout.Size = new System.Drawing.Size(844, 514);
             this.rootServerTableLayout.TabIndex = 5;
             // 
             // serverChatTableLayout
@@ -232,7 +245,7 @@
             this.serverChatTableLayout.RowCount = 2;
             this.serverChatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.4724F));
             this.serverChatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.5276F));
-            this.serverChatTableLayout.Size = new System.Drawing.Size(621, 453);
+            this.serverChatTableLayout.Size = new System.Drawing.Size(727, 514);
             this.serverChatTableLayout.TabIndex = 1;
             // 
             // chatTableLayout
@@ -243,12 +256,12 @@
             this.chatTableLayout.Controls.Add(this.messageTableLayout, 0, 1);
             this.chatTableLayout.Controls.Add(this.messageList, 0, 0);
             this.chatTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.chatTableLayout.Location = new System.Drawing.Point(3, 285);
+            this.chatTableLayout.Location = new System.Drawing.Point(3, 324);
             this.chatTableLayout.Name = "chatTableLayout";
             this.chatTableLayout.RowCount = 2;
             this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.24242F));
             this.chatTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15.75758F));
-            this.chatTableLayout.Size = new System.Drawing.Size(615, 165);
+            this.chatTableLayout.Size = new System.Drawing.Size(721, 187);
             this.chatTableLayout.TabIndex = 0;
             // 
             // messageTableLayout
@@ -259,12 +272,12 @@
             this.messageTableLayout.Controls.Add(this.messageTextBox, 0, 0);
             this.messageTableLayout.Controls.Add(this.sendMessageButton, 1, 0);
             this.messageTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.messageTableLayout.Location = new System.Drawing.Point(0, 138);
+            this.messageTableLayout.Location = new System.Drawing.Point(0, 157);
             this.messageTableLayout.Margin = new System.Windows.Forms.Padding(0);
             this.messageTableLayout.Name = "messageTableLayout";
             this.messageTableLayout.RowCount = 1;
             this.messageTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.messageTableLayout.Size = new System.Drawing.Size(615, 27);
+            this.messageTableLayout.Size = new System.Drawing.Size(721, 30);
             this.messageTableLayout.TabIndex = 1;
             // 
             // messageTextBox
@@ -275,7 +288,7 @@
             this.messageTextBox.Margin = new System.Windows.Forms.Padding(0);
             this.messageTextBox.MaxLength = 100;
             this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(551, 22);
+            this.messageTextBox.Size = new System.Drawing.Size(646, 22);
             this.messageTextBox.TabIndex = 0;
             this.messageTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextBox_KeyDown);
             // 
@@ -283,9 +296,9 @@
             // 
             this.sendMessageButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.sendMessageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendMessageButton.Location = new System.Drawing.Point(554, 3);
+            this.sendMessageButton.Location = new System.Drawing.Point(649, 3);
             this.sendMessageButton.Name = "sendMessageButton";
-            this.sendMessageButton.Size = new System.Drawing.Size(58, 21);
+            this.sendMessageButton.Size = new System.Drawing.Size(69, 24);
             this.sendMessageButton.TabIndex = 1;
             this.sendMessageButton.Text = "Send";
             this.sendMessageButton.UseVisualStyleBackColor = true;
@@ -300,7 +313,7 @@
             this.messageList.Name = "messageList";
             this.messageList.ReadOnly = true;
             this.messageList.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.messageList.Size = new System.Drawing.Size(609, 132);
+            this.messageList.Size = new System.Drawing.Size(715, 151);
             this.messageList.TabIndex = 2;
             this.messageList.Text = "";
             // 
@@ -308,54 +321,160 @@
             // 
             this.serverTableLayout.ColumnCount = 1;
             this.serverTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.serverTableLayout.Controls.Add(this.createRoomButton, 0, 1);
-            this.serverTableLayout.Controls.Add(this.roomList, 0, 0);
+            this.serverTableLayout.Controls.Add(this.roomListAndLobbyPanel, 0, 0);
+            this.serverTableLayout.Controls.Add(this.roomControlsPanel, 0, 1);
             this.serverTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serverTableLayout.Location = new System.Drawing.Point(3, 3);
             this.serverTableLayout.Name = "serverTableLayout";
             this.serverTableLayout.RowCount = 2;
             this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 86.95652F));
             this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 13.04348F));
-            this.serverTableLayout.Size = new System.Drawing.Size(615, 276);
+            this.serverTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.serverTableLayout.Size = new System.Drawing.Size(721, 315);
             this.serverTableLayout.TabIndex = 1;
+            // 
+            // roomListAndLobbyPanel
+            // 
+            this.roomListAndLobbyPanel.Controls.Add(this.roomList);
+            this.roomListAndLobbyPanel.Controls.Add(this.userInLobbyListBox);
+            this.roomListAndLobbyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomListAndLobbyPanel.Location = new System.Drawing.Point(3, 3);
+            this.roomListAndLobbyPanel.Name = "roomListAndLobbyPanel";
+            this.roomListAndLobbyPanel.Size = new System.Drawing.Size(715, 267);
+            this.roomListAndLobbyPanel.TabIndex = 6;
+            // 
+            // roomList
+            // 
+            this.roomList.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.roomList.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.roomList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.roomIDColumnHeader,
+            this.roomNameColumnHeader,
+            this.usersInRoomColumnHeader,
+            this.roomStatusColumnHeader});
+            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomList.FullRowSelect = true;
+            this.roomList.GridLines = true;
+            this.roomList.HideSelection = false;
+            this.roomList.Location = new System.Drawing.Point(0, 0);
+            this.roomList.Margin = new System.Windows.Forms.Padding(0);
+            this.roomList.MultiSelect = false;
+            this.roomList.Name = "roomList";
+            this.roomList.ShowGroups = false;
+            this.roomList.Size = new System.Drawing.Size(715, 267);
+            this.roomList.TabIndex = 0;
+            this.roomList.UseCompatibleStateImageBehavior = false;
+            this.roomList.View = System.Windows.Forms.View.Details;
+            this.roomList.Click += new System.EventHandler(this.roomList_Click);
+            this.roomList.DoubleClick += new System.EventHandler(this.roomList_DoubleClick);
+            // 
+            // roomIDColumnHeader
+            // 
+            this.roomIDColumnHeader.Text = "ID";
+            this.roomIDColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomIDColumnHeader.Width = 25;
+            // 
+            // roomNameColumnHeader
+            // 
+            this.roomNameColumnHeader.Text = "Room Name";
+            this.roomNameColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomNameColumnHeader.Width = 89;
+            // 
+            // usersInRoomColumnHeader
+            // 
+            this.usersInRoomColumnHeader.Text = "Players";
+            this.usersInRoomColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.usersInRoomColumnHeader.Width = 58;
+            // 
+            // roomStatusColumnHeader
+            // 
+            this.roomStatusColumnHeader.Text = "Status";
+            this.roomStatusColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomStatusColumnHeader.Width = 439;
+            // 
+            // userInLobbyListBox
+            // 
+            this.userInLobbyListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userInLobbyListBox.FormattingEnabled = true;
+            this.userInLobbyListBox.Location = new System.Drawing.Point(0, 0);
+            this.userInLobbyListBox.Name = "userInLobbyListBox";
+            this.userInLobbyListBox.Size = new System.Drawing.Size(715, 267);
+            this.userInLobbyListBox.TabIndex = 1;
+            this.userInLobbyListBox.Visible = false;
+            // 
+            // roomControlsPanel
+            // 
+            this.roomControlsPanel.Controls.Add(this.joinButton);
+            this.roomControlsPanel.Controls.Add(this.backButton);
+            this.roomControlsPanel.Controls.Add(this.createRoomButton);
+            this.roomControlsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomControlsPanel.Location = new System.Drawing.Point(3, 276);
+            this.roomControlsPanel.Name = "roomControlsPanel";
+            this.roomControlsPanel.Size = new System.Drawing.Size(715, 36);
+            this.roomControlsPanel.TabIndex = 2;
+            // 
+            // joinButton
+            // 
+            this.joinButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.joinButton.Enabled = false;
+            this.joinButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.joinButton.Location = new System.Drawing.Point(181, 0);
+            this.joinButton.Name = "joinButton";
+            this.joinButton.Size = new System.Drawing.Size(75, 36);
+            this.joinButton.TabIndex = 2;
+            this.joinButton.Text = "Join";
+            this.joinButton.UseVisualStyleBackColor = true;
+            this.joinButton.Click += new System.EventHandler(this.joinButton_Click);
+            // 
+            // backButton
+            // 
+            this.backButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this.backButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.Location = new System.Drawing.Point(106, 0);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 36);
+            this.backButton.TabIndex = 1;
+            this.backButton.Text = "←";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Visible = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // createRoomButton
             // 
             this.createRoomButton.Dock = System.Windows.Forms.DockStyle.Left;
             this.createRoomButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.createRoomButton.Location = new System.Drawing.Point(3, 242);
+            this.createRoomButton.Location = new System.Drawing.Point(0, 0);
             this.createRoomButton.Name = "createRoomButton";
-            this.createRoomButton.Size = new System.Drawing.Size(106, 31);
+            this.createRoomButton.Size = new System.Drawing.Size(106, 36);
             this.createRoomButton.TabIndex = 0;
             this.createRoomButton.Text = "Create Room";
             this.createRoomButton.UseVisualStyleBackColor = true;
             this.createRoomButton.Click += new System.EventHandler(this.createRoomButton_Click);
             // 
-            // roomList
-            // 
-            this.roomList.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roomList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roomList.Location = new System.Drawing.Point(3, 3);
-            this.roomList.Name = "roomList";
-            this.roomList.Size = new System.Drawing.Size(609, 233);
-            this.roomList.TabIndex = 1;
-            this.roomList.UseCompatibleStateImageBehavior = false;
-            // 
             // onlineUserList
             // 
+            this.onlineUserList.Alignment = System.Windows.Forms.ListViewAlignment.Left;
             this.onlineUserList.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.onlineUserList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.onlineUserList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.userNameColumnHeader});
             this.onlineUserList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.onlineUserList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onlineUserList.FullRowSelect = true;
             this.onlineUserList.GridLines = true;
-            this.onlineUserList.Location = new System.Drawing.Point(621, 0);
+            this.onlineUserList.Location = new System.Drawing.Point(727, 0);
             this.onlineUserList.Margin = new System.Windows.Forms.Padding(0);
+            this.onlineUserList.MultiSelect = false;
             this.onlineUserList.Name = "onlineUserList";
-            this.onlineUserList.Size = new System.Drawing.Size(101, 453);
+            this.onlineUserList.Size = new System.Drawing.Size(117, 514);
             this.onlineUserList.TabIndex = 0;
             this.onlineUserList.UseCompatibleStateImageBehavior = false;
+            this.onlineUserList.View = System.Windows.Forms.View.List;
+            // 
+            // userNameColumnHeader
+            // 
+            this.userNameColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mainPanel
             // 
@@ -365,14 +484,14 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Padding = new System.Windows.Forms.Padding(0, 24, 0, 22);
-            this.mainPanel.Size = new System.Drawing.Size(722, 499);
+            this.mainPanel.Size = new System.Drawing.Size(844, 560);
             this.mainPanel.TabIndex = 1;
             // 
             // LudoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 499);
+            this.ClientSize = new System.Drawing.Size(844, 560);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.mainPanel);
@@ -380,6 +499,7 @@
             this.Name = "LudoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ludo Form";
+            this.ResizeEnd += new System.EventHandler(this.ludoForm_ResizeEnd);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
@@ -393,6 +513,8 @@
             this.messageTableLayout.ResumeLayout(false);
             this.messageTableLayout.PerformLayout();
             this.serverTableLayout.ResumeLayout(false);
+            this.roomListAndLobbyPanel.ResumeLayout(false);
+            this.roomControlsPanel.ResumeLayout(false);
             this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -422,10 +544,20 @@
         private System.Windows.Forms.RichTextBox messageList;
         private System.Windows.Forms.ToolStripStatusLabel pingStatusLabel;
         private System.Windows.Forms.TableLayoutPanel serverTableLayout;
-        private System.Windows.Forms.Button createRoomButton;
         private System.Windows.Forms.ListView roomList;
         private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.Button sendMessageButton;
+        private System.Windows.Forms.ColumnHeader roomIDColumnHeader;
+        private System.Windows.Forms.ColumnHeader roomNameColumnHeader;
+        private System.Windows.Forms.ColumnHeader usersInRoomColumnHeader;
+        private System.Windows.Forms.ColumnHeader roomStatusColumnHeader;
+        private System.Windows.Forms.ColumnHeader userNameColumnHeader;
+        private Panel roomListAndLobbyPanel;
+        private Panel roomControlsPanel;
+        private Button createRoomButton;
+        private ListBox userInLobbyListBox;
+        private Button backButton;
+        private Button joinButton;
     }
 }
 

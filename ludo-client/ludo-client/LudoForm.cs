@@ -18,6 +18,7 @@ namespace ludo_client
         private AuthenticationHandler authenticationHandler;
         private OnlineUserHandler onlineUserHandler;
         private ChatHandler chatHandler;
+        private RoomHandler roomHandler;
         private User user;
 
         public LudoForm()
@@ -25,8 +26,6 @@ namespace ludo_client
             InitializeComponent();
             rootConnectTableLayout.Hide();
             rootServerTableLayout.Hide();
-            //this.ludoForm = this;
-            //this.onlineUserList = onlineUserList;
         }
 
         public void updateOnlineUserList()
@@ -61,8 +60,10 @@ namespace ludo_client
 
             if (authenticationSuceed())
             {
+                Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "server";
                 onlineUserHandler = new OnlineUserHandler(this.onlineUserList);
                 chatHandler = new ChatHandler(this.messageList);
+                roomHandler = new RoomHandler(this.roomList);
 
                 rootConnectTableLayout.Hide();
                 rootServerTableLayout.Show();
@@ -138,7 +139,15 @@ namespace ludo_client
 
         private void createRoomButton_Click(object sender, EventArgs e)
         {
-            //Room room = new Room();
+            CreateRoomForm createRoomForm = new CreateRoomForm();
+            createRoomForm.ShowDialog();
+            if (createRoomForm.DialogResult == DialogResult.OK)
+            {
+                Room room = new Room();
+                room.RoomAction = "createRoom";
+                room.RoomName = ClientBase.createRoomName;
+                roomHandler.createRoom(room);
+            }
         }
 
         private void sendMessageButton_Click(object sender, EventArgs e)
@@ -154,6 +163,79 @@ namespace ludo_client
                 messageTextBox.Focus();
             }
         }
+
+        public void drawLobby()
+        {
+            this.serverTableLayout.Controls.Remove(this.roomList);
+            this.roomList.Visible = false;
+            ListBox lobbyListBox = new ListBox();
+            this.serverTableLayout.Controls.Add(lobbyListBox);
+            lobbyListBox.Visible = true;
+        }
+
+        // Form Resize Event Listeneer
+        private void ludoForm_ResizeEnd(Object sender, EventArgs e)
+        {
+            this.roomList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.roomList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+
+        private void joinButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Joining Room Number: " + ClientBase.roomListSelectionID);
+            joinRoom();
+        }
+
+        private void setRoomListSelectionID()
+        {
+            ClientBase.roomListSelectionID = this.roomList.FocusedItem.Index;
+        }
+
+        private void roomList_Click(object sender, EventArgs e)
+        {
+            this.joinButton.Enabled = true;
+            setRoomListSelectionID();
+        }
+
+        private void roomList_DoubleClick(object sender, EventArgs e)
+        {
+            setRoomListSelectionID();
+            joinButton.PerformClick();
+        }
+
+        private void joinRoom()
+        {
+            Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "lobby";
+            // Add this User to userInRoomList
+            Main.ludo.Rooms[ClientBase.roomListSelectionID].UsersInRoom.Add(Main.ludo.Users[ClientBase.myUserListIndex]);
+            roomHandler.joinRoom(Main.ludo.Rooms[ClientBase.roomListSelectionID]);
+            showLobby();
+        }
+
+        private void showLobby() 
+        {
+            this.roomList.Visible = false;
+            this.createRoomButton.Visible = false;
+            this.joinButton.Visible = false;
+            this.backButton.Visible = true;
+            this.userInLobbyListBox.Visible = true;
+        }
+
+        private void showRoomList()
+        {
+            this.roomList.Visible = true;
+            this.createRoomButton.Visible = true;
+            this.joinButton.Visible = true;
+            this.backButton.Visible = false;
+            this.userInLobbyListBox.Visible = false;
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            showRoomList();
+        }
+
     }
 }
 

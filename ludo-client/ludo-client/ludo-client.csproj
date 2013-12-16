@@ -53,6 +53,12 @@
     <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="ChatHandler.cs" />
     <Compile Include="ClientBase.cs" />
+    <Compile Include="CreateRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateRoomForm.Designer.cs">
+      <DependentUpon>CreateRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LudoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="Room.cs" />
     <Compile Include="RoomHandler.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="CreateRoomForm.resx">
+      <DependentUpon>CreateRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LudoForm.resx">
       <DependentUpon>LudoForm.cs</DependentUpon>
     </EmbeddedResource>

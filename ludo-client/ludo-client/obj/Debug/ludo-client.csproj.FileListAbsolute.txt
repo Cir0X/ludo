@@ -30,3 +30,4 @@ C:\Users\Cir0X\Documents\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-cl
 C:\Users\Cir0X\Documents\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo_client.LudoForm.resources
 C:\Users\Cir0X\Documents\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo_client.Properties.Resources.resources
 C:\Users\Cir0X\Documents\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo-client.csproj.GenerateResource.Cache
+C:\Users\cir0x\Documents\Visual Studio 2012\Projects\ludo\ludo-client\ludo-client\obj\Debug\ludo_client.createRoomForm.resources

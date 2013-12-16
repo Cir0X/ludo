@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ludo_server.dto;
 
 namespace ludo_server.dto
 {
     class Room
     {
+        private int roomID;
         private String roomName;
         private List<User> usersInRoom;
-        private byte currentPlayerCount;
         private String roomStatus;
         private String roomAction;
+
+        public int RoomID
+        {
+            get { return roomID; }
+            set { roomID = value; }
+        }
 
         public String RoomName
         {
@@ -24,12 +31,6 @@ namespace ludo_server.dto
         {
             get { return usersInRoom; }
             set { usersInRoom = value; }
-        }
-
-        public byte CurrentPlayerCount
-        {
-            get { return currentPlayerCount; }
-            set { currentPlayerCount = value; }
         }
 
         public String RoomStatus

@@ -9,7 +9,7 @@ namespace ludo_server.dto
     class User
     {
         private String userName;
-        private String currentRoom;
+        private String currentView;
         private Guid socketID;
         private int userListIndex;
         private bool handshaked;
@@ -27,10 +27,10 @@ namespace ludo_server.dto
             set { socketID = value; }
         }
 
-        public String CurrentRoom
+        public String CurrentView
         {
-            get { return currentRoom; }
-            set { currentRoom = value; }
+            get { return currentView; }
+            set { currentView = value; }
         }
 
         public int UserListIndex

@@ -49,6 +49,7 @@ namespace ludo_client
             {
                 onlineUserList.Items.Add(user.UserName);
             }
+            onlineUserList.Items[ClientBase.myUserListIndex].BackColor = System.Drawing.Color.Gold; // Set this user background color
         }
 
     }
