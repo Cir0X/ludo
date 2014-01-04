@@ -12,6 +12,7 @@ namespace ludo_client.dto
         private String message;
         private User sender;
         private DateTime timeStamp;
+        private int targetRoomID = -1;
 
         public String Msg
         {
@@ -29,6 +30,12 @@ namespace ludo_client.dto
         {
             get { return timeStamp; }
             set { timeStamp = value; }
+        }
+
+        public int TargetRoomID
+        {
+            get { return targetRoomID; }
+            set { targetRoomID = value; }
         }
     }
 }

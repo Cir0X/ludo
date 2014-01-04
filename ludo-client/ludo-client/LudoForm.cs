@@ -26,6 +26,7 @@ namespace ludo_client
             InitializeComponent();
             rootConnectTableLayout.Hide();
             rootServerTableLayout.Hide();
+            this.chatTabControl.TabPages.Remove(this.roomChatTabPage);
         }
 
         public void updateOnlineUserList()
@@ -60,10 +61,10 @@ namespace ludo_client
 
             if (authenticationSuceed())
             {
-                Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "server";
+                //Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "server";
                 onlineUserHandler = new OnlineUserHandler(this.onlineUserList);
-                chatHandler = new ChatHandler(this.messageList);
-                roomHandler = new RoomHandler(this.roomList);
+                chatHandler = new ChatHandler(this.messageList, this.roomMessageList);
+                roomHandler = new RoomHandler(this.roomList, this.userInLobbyListBox);
 
                 rootConnectTableLayout.Hide();
                 rootServerTableLayout.Show();
@@ -144,7 +145,6 @@ namespace ludo_client
             if (createRoomForm.DialogResult == DialogResult.OK)
             {
                 Room room = new Room();
-                room.RoomAction = "createRoom";
                 room.RoomName = ClientBase.createRoomName;
                 roomHandler.createRoom(room);
             }
@@ -157,10 +157,22 @@ namespace ludo_client
                 ludo_client.dto.Message message = new ludo_client.dto.Message();
                 message.Sender = Main.ludo.Users[ClientBase.myUserListIndex];
                 message.Msg = messageTextBox.Text;
-                //Main.ludo.Chat.Add(message);
+                message.TargetRoomID = setMessageTargetID(message);
                 this.chatHandler.sendMessage(message);
                 messageTextBox.Clear();
                 messageTextBox.Focus();
+            }
+        }
+
+        private int setMessageTargetID(ludo_client.dto.Message message)
+        {
+            if (this.chatTabControl.SelectedIndex > 0)
+            {
+                return ClientBase.roomListSelectionID; // room chat
+            }
+            else
+            {
+                return -1; // global server chat
             }
         }
 
@@ -183,7 +195,6 @@ namespace ludo_client
 
         private void joinButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Joining Room Number: " + ClientBase.roomListSelectionID);
             joinRoom();
         }
 
@@ -206,11 +217,20 @@ namespace ludo_client
 
         private void joinRoom()
         {
-            Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "lobby";
-            // Add this User to userInRoomList
-            Main.ludo.Rooms[ClientBase.roomListSelectionID].UsersInRoom.Add(Main.ludo.Users[ClientBase.myUserListIndex]);
             roomHandler.joinRoom(Main.ludo.Rooms[ClientBase.roomListSelectionID]);
             showLobby();
+
+            this.roomChatTabPage.Text = Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomName;
+            this.chatTabControl.TabPages.Add(this.roomChatTabPage);
+            this.chatTabControl.SelectedTab = this.roomChatTabPage;
+        }
+
+        private void leaveRoom()
+        {
+            roomHandler.leaveRoom(Main.ludo.Rooms[ClientBase.roomListSelectionID]);
+            showRoomList();
+            this.chatTabControl.TabPages.Remove(this.roomChatTabPage);
+            this.roomMessageList.Clear(); // clear room chat
         }
 
         private void showLobby() 
@@ -233,7 +253,17 @@ namespace ludo_client
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            showRoomList();
+            leaveRoom();
+        }
+
+        private void LudoForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            leaveRoom();
+        }
+
+        private void chatTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.messageTextBox.Focus();
         }
 
     }

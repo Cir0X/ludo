@@ -11,7 +11,7 @@ namespace ludo_server.dto
     {
         private int roomID;
         private String roomName;
-        private List<User> usersInRoom;
+        private List<int> userInRoomIDs;
         private String roomStatus;
         private String roomAction;
 
@@ -27,10 +27,10 @@ namespace ludo_server.dto
             set { roomName = value; }
         }
 
-        public List<User> UsersInRoom
+        public List<int> UserInRoomIDs
         {
-            get { return usersInRoom; }
-            set { usersInRoom = value; }
+            get { return userInRoomIDs; }
+            set { userInRoomIDs = value; }
         }
 
         public String RoomStatus
@@ -47,7 +47,7 @@ namespace ludo_server.dto
 
         public Room()
         {
-            this.usersInRoom = new List<User>();
+            this.userInRoomIDs = new List<int>();
         }
 
     }

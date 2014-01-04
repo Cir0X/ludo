@@ -17,10 +17,12 @@ namespace ludo_client
         private String PORT_ROUTE = ":5002/chat";
         private WebSocket websocket;
         private RichTextBox messageList;
+        private RichTextBox roomMessageList;
 
-        public ChatHandler(RichTextBox messageList)
+        public ChatHandler(RichTextBox messageList, RichTextBox roomMessageList)
         {
             this.messageList = messageList;
+            this.roomMessageList = roomMessageList;
             websocket = new WebSocket("ws://" + ClientBase.serverAdress + PORT_ROUTE);
             websocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(receiveChat);
             websocket.Open();
@@ -39,7 +41,15 @@ namespace ludo_client
         public void receiveChat(object sender, MessageReceivedEventArgs args)
         {
             ludo_client.dto.Message newIncomingMessage = JsonConvert.DeserializeObject<ludo_client.dto.Message>(args.Message);
-            updateOnlineUserList(this.messageList, newIncomingMessage);
+
+            if (!(newIncomingMessage.TargetRoomID > -1))
+            {
+                updateOnlineUserList(this.messageList, newIncomingMessage); // for global server chat
+            }
+            else
+            {
+                updateOnlineUserList(this.roomMessageList, newIncomingMessage); // for room chat
+            }
         }
 
         public void updateOnlineUserList(RichTextBox messageList, ludo_client.dto.Message newIncomingMessage)
@@ -50,7 +60,6 @@ namespace ludo_client
                 messageList.Invoke(new MethodInvoker(() => updateOnlineUserList(messageList, newIncomingMessage)));
                 return;
             }
-            //int lastMessage = Main.ludo.Chat.Count() - 1;
             String timeStampSecond = newIncomingMessage.TimeStamp.Second.ToString();
             if (timeStampSecond.Length == 1)
             {

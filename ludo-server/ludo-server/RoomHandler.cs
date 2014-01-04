@@ -42,14 +42,32 @@ namespace ludo_server
                 Console.WriteLine("Room " + room.RoomName + " created");
                 createRoom(room);
             }
-            if (room.RoomID.Equals("joinRoom"))
+
+            if (room.RoomAction.Equals("joinRoom"))
             {
                 joinRoom(room);
+            }
+
+            if (room.RoomAction.Equals("leaveRoom"))
+            {
+                leaveRoom(room);
+            }
+        }
+
+        private void setUserCurrentRoomIDs(Room room)
+        {
+            int currentRoomID = room.RoomID;
+
+
+            foreach (var userID in room.UserInRoomIDs)
+            {
+                Main.ludo.Users[userID].CurrentRoomID = currentRoomID;
             }
         }
 
         private void createRoom(Room room)
         {
+            room.RoomStatus = "Waiting";
             room.RoomID = Main.ludo.Rooms.Count; // get the room count and set it as as roomID
             Main.ludo.Rooms.Add(room);
             sendUpdatedRoomList();
@@ -57,7 +75,14 @@ namespace ludo_server
 
         private void joinRoom(Room room)
         {
-            Main.ludo.Rooms[room.RoomID].UsersInRoom = room.UsersInRoom;
+            setUserCurrentRoomIDs(room);
+            Main.ludo.Rooms[room.RoomID] = room;
+            sendUpdatedRoomList();
+        }
+
+        private void leaveRoom(Room room)
+        {
+            Main.ludo.Rooms[room.RoomID] = room;
             sendUpdatedRoomList();
         }
 

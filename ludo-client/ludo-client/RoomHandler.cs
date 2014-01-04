@@ -15,10 +15,12 @@ namespace ludo_client
         private String PORT_ROUTE = ":5003/room";
         private WebSocket websocket;
         private ListView roomList;
+        private ListBox usersInLobbyListBox;
 
-        public RoomHandler(ListView roomList)
+        public RoomHandler(ListView roomList, ListBox usersInLobbyListBox)
         {
             this.roomList = roomList;
+            this.usersInLobbyListBox = usersInLobbyListBox;
             websocket = new WebSocket("ws://" + ClientBase.serverAdress + PORT_ROUTE);
             websocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(handleRooms);
             websocket.Open();
@@ -31,7 +33,7 @@ namespace ludo_client
 
         public void createRoom(Room room)
         {
-            room.RoomStatus = "Waiting";
+            room.RoomAction = "createRoom";
             websocket.Send(JsonConvert.SerializeObject(room));
             //LudoForm ludoForm = new LudoForm();
             //ludoForm.drawLobby();
@@ -39,22 +41,28 @@ namespace ludo_client
 
         public void joinRoom(Room room)
         {
+            //Main.ludo.Users[ClientBase.myUserListIndex].CurrentRoomID = ClientBase.roomListSelectionID;
             room.RoomAction = "joinRoom";
+            room.UserInRoomIDs.Add(ClientBase.myUserListIndex); // Add this user to Room list
+            websocket.Send(JsonConvert.SerializeObject(room));
+        }
+
+        public void leaveRoom(Room room)
+        {
+            room.UserInRoomIDs.Remove(ClientBase.myUserListIndex);
+            Main.ludo.Users[ClientBase.myUserListIndex].CurrentRoomID = -1;
+            room.RoomAction = "leaveRoom";
             websocket.Send(JsonConvert.SerializeObject(room));
         }
 
         private void handleRooms(object sender, MessageReceivedEventArgs args)
         {
             Main.ludo = JsonConvert.DeserializeObject<Ludo>(args.Message);
-            if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomAction.Equals("createRoom"))
+            updateRoomList(this.roomList);
+            if (Main.ludo.Users[ClientBase.myUserListIndex].CurrentRoomID > -1)
             {
-                updateRoomList(this.roomList);
+                updateUsersInLobbyListBox(this.usersInLobbyListBox);
             }
-
-            //if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomAction.Equals("joinRoom"))
-            //{
-            //    updateUsersInLobbyListBox();
-            //}
         }
 
         private void updateUsersInLobbyListBox(ListBox usersInLobbyListBox) 
@@ -62,11 +70,13 @@ namespace ludo_client
             if (usersInLobbyListBox.InvokeRequired)
             {
                 usersInLobbyListBox.Invoke(new MethodInvoker(() => updateUsersInLobbyListBox(usersInLobbyListBox)));
+                return;
             }
+
             usersInLobbyListBox.Items.Clear();
-            foreach (var user in Main.ludo.Rooms[ClientBase.roomListSelectionID].UsersInRoom)
+            foreach (var userID in Main.ludo.Rooms[ClientBase.roomListSelectionID].UserInRoomIDs)
             {
-                usersInLobbyListBox.Items.Add(user.UserName);
+                usersInLobbyListBox.Items.Add(Main.ludo.Users[userID].UserName);
             }
         }
 
@@ -78,13 +88,14 @@ namespace ludo_client
                 roomList.Invoke(new MethodInvoker(() => updateRoomList(roomList)));
                 return;
             }
+
             roomList.Items.Clear();
             foreach (var room in Main.ludo.Rooms)
             {
                 ListViewItem roomItem = new ListViewItem();
                 roomItem.SubItems[0].Text = room.RoomID.ToString();
                 roomItem.SubItems.Add(room.RoomName);
-                roomItem.SubItems.Add(room.UsersInRoom.Count.ToString());
+                roomItem.SubItems.Add(room.UserInRoomIDs.Count.ToString() + "/4");
                 roomItem.SubItems.Add(room.RoomStatus);
                 roomList.Items.Add(roomItem);
             }

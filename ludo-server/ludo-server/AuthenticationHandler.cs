@@ -34,7 +34,7 @@ namespace ludo_server
             if (isUserNameAvailable())
             {
                 this.user.IsUserNameAvailable = true;
-
+                //this.user.IP = socket.ConnectionInfo.ClientIpAddress;
                 Main.ludo.Users.Add(this.user); // Add this User for the online user list
                 setUserListID();
 
