@@ -26,7 +26,6 @@ namespace ludo_server
         
         private void startAuthentication(String jsonMessage, IWebSocketConnection socket)
         {
-            Console.WriteLine("JSON: " + jsonMessage);
             this.user = JsonConvert.DeserializeObject<User>(jsonMessage); // Serialize from Json to Object
             this.user.SocketID = socket.ConnectionInfo.Id;
             this.user.Handshaked = true;

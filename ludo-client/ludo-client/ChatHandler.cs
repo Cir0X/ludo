@@ -41,23 +41,22 @@ namespace ludo_client
         public void receiveChat(object sender, MessageReceivedEventArgs args)
         {
             ludo_client.dto.Message newIncomingMessage = JsonConvert.DeserializeObject<ludo_client.dto.Message>(args.Message);
-
-            if (!(newIncomingMessage.TargetRoomID > -1))
+            if (newIncomingMessage.TargetRoomID != Main.ludo.Users[ClientBase.myUserListIndex].CurrentRoomID)
             {
-                updateOnlineUserList(this.messageList, newIncomingMessage); // for global server chat
+                updateMessageList(this.messageList, newIncomingMessage); // for global server chat
             }
             else
             {
-                updateOnlineUserList(this.roomMessageList, newIncomingMessage); // for room chat
+                updateMessageList(this.roomMessageList, newIncomingMessage); // for room chat
             }
         }
 
-        public void updateOnlineUserList(RichTextBox messageList, ludo_client.dto.Message newIncomingMessage)
+        public void updateMessageList(RichTextBox messageList, ludo_client.dto.Message newIncomingMessage)
         {
             if (messageList.InvokeRequired)
             {
                 // We're on a thread other than the GUI thread
-                messageList.Invoke(new MethodInvoker(() => updateOnlineUserList(messageList, newIncomingMessage)));
+                messageList.Invoke(new MethodInvoker(() => updateMessageList(messageList, newIncomingMessage)));
                 return;
             }
             String timeStampSecond = newIncomingMessage.TimeStamp.Second.ToString();

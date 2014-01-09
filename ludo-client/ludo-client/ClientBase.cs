@@ -11,6 +11,7 @@ namespace ludo_client
         public static String serverAdress;
         public static int myUserListIndex = -1;
         public static String createRoomName;
+        public static bool isConnected = false;
         private short connectionCount;
         public static int roomListSelectionID;
 

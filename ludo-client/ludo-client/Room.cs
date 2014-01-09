@@ -10,7 +10,9 @@ namespace ludo_client.dto
     {
         private int roomID;
         private String roomName;
+        private int roomModeratorUserID;
         private List<int> userInRoomIDs;
+        private List<int> readyUsersInRoomIDs;
         private String roomStatus;
         private String roomAction;
 
@@ -26,10 +28,22 @@ namespace ludo_client.dto
             set { roomName = value; }
         }
 
+        public int RoomModeratorUserID
+        {
+            get { return roomModeratorUserID; }
+            set { roomModeratorUserID = value; }
+        }
+
         public List<int> UserInRoomIDs
         {
             get { return userInRoomIDs; }
             set { userInRoomIDs = value; }
+        }
+
+        public List<int> ReadyUsersInRoomIDs
+        {
+            get { return readyUsersInRoomIDs; }
+            set { readyUsersInRoomIDs = value; }
         }
 
         public String RoomStatus
@@ -47,6 +61,7 @@ namespace ludo_client.dto
         public Room()
         {
             this.userInRoomIDs = new List<int>();
+            this.readyUsersInRoomIDs = new List<int>();
         }
 
     }

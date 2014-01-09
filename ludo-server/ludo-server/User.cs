@@ -14,7 +14,7 @@ namespace ludo_server.dto
         private int userListIndex;
         private bool handshaked;
         private bool isUserNameAvailable;
-
+        private bool statusInRoom;
         public String UserName
         {
             get { return userName; }
@@ -49,6 +49,12 @@ namespace ludo_server.dto
         {
             get { return isUserNameAvailable; }
             set { isUserNameAvailable = value; }
+        }
+
+        public bool StatusInRoom
+        {
+            get { return statusInRoom; }
+            set { statusInRoom = value; }
         }
     }
 }
