@@ -64,7 +64,8 @@ namespace ludo_client
                 //Main.ludo.Users[ClientBase.myUserListIndex].CurrentView = "server";
                 onlineUserHandler = new OnlineUserHandler(this.onlineUserList);
                 chatHandler = new ChatHandler(this.messageList, this.roomMessageList);
-                roomHandler = new RoomHandler(this.roomList, this.userInLobbyListBox, this.readyButton, this.startButton, this.backButton, this.roomMessageList);
+                roomHandler = new RoomHandler(this.roomList, this.userInLobbyListBox, this.readyButton, this.startButton, this.backButton,
+                    this.roomMessageList, this.gameTableLayout, this.gameFieldPanel, this.dicePictureBox, this.rollTheDiceButton, this.playerListBox);
 
                 ClientBase.isConnected = true;
 
@@ -194,19 +195,30 @@ namespace ludo_client
 
         private void setRoomListSelectionID()
         {
-            ClientBase.roomListSelectionID = this.roomList.FocusedItem.Index;
+            if (Main.ludo.Rooms[this.roomList.FocusedItem.Index].UserInRoomIDs.Count >= 4 ||
+                Main.ludo.Rooms[this.roomList.FocusedItem.Index].RoomStatus.Equals("Playing"))
+            {
+                MessageBox.Show("Room is full or the Game is already running");
+            }
+            else
+            {
+                ClientBase.roomListSelectionID = this.roomList.FocusedItem.Index;
+                this.joinButton.Enabled = true;
+            }
         }
 
         private void roomList_Click(object sender, EventArgs e)
         {
-            this.joinButton.Enabled = true;
             setRoomListSelectionID();
         }
 
         private void roomList_DoubleClick(object sender, EventArgs e)
         {
             setRoomListSelectionID();
-            joinButton.PerformClick();
+            if (ClientBase.roomListSelectionID >= -1)
+            {
+                joinButton.PerformClick();
+            }
         }
 
         private void createRoomButton_Click(object sender, EventArgs e)
@@ -236,7 +248,6 @@ namespace ludo_client
         private void leaveRoom()
         {
             roomHandler.leaveRoom(Main.ludo.Rooms[ClientBase.roomListSelectionID]);
-            Thread.Sleep(2000);
             showRoomList();
             this.chatTabControl.TabPages.Remove(this.roomChatTabPage);
             this.roomMessageList.Clear(); // clear room chat
@@ -298,6 +309,10 @@ namespace ludo_client
             setStart();
         }
 
+        private void rollTheDiceButton_Click(object sender, EventArgs e)
+        {
+            this.roomHandler.rollTheDice();
+        }
 
     }
 }

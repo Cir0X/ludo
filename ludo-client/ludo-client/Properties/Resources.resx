@@ -121,4 +121,43 @@
   <data name="ludo-ground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ludo-ground.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="1cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\1cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="2cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\2cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="3cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\3cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="4cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="5cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\5cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="6cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\6cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blue-circle-3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blue-circle-3d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="empty-circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty-circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="empty-circle-3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty-circle-3d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="empty-cube" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty-cube.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="green-circle-3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\green-circle-3d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="red-circle-3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\red-circle-3d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yellow-circle-3d" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellow-circle-3d.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

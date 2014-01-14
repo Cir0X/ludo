@@ -13,7 +13,7 @@ namespace ludo_client
         public static String createRoomName;
         public static bool isConnected = false;
         private short connectionCount;
-        public static int roomListSelectionID;
+        public static int roomListSelectionID = -1;
 
         public void addConnetionCount()
         {

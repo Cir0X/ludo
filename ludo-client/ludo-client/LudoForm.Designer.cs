@@ -45,22 +45,26 @@ namespace ludo_client
             this.rootServerTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.serverChatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.serverAndGamePanel = new System.Windows.Forms.Panel();
+            this.gameTableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.gameFieldPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dicePictureBox = new System.Windows.Forms.PictureBox();
+            this.rollTheDiceButton = new System.Windows.Forms.Button();
+            this.playerListBox = new System.Windows.Forms.ListBox();
             this.serverTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.roomListAndLobbyPanel = new System.Windows.Forms.Panel();
-            this.roomList = new System.Windows.Forms.ListView();
-            this.roomIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.roomNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.usersInRoomColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.roomStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.userInLobbyListBox = new System.Windows.Forms.ListBox();
             this.roomControlsPanel = new System.Windows.Forms.Panel();
             this.readyButton = new System.Windows.Forms.Button();
             this.startButton = new System.Windows.Forms.Button();
             this.joinButton = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.createRoomButton = new System.Windows.Forms.Button();
-            this.gameTableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.playGroundPicture = new System.Windows.Forms.PictureBox();
+            this.roomList = new System.Windows.Forms.ListView();
+            this.roomIDColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.roomNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.usersInRoomColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.roomStatusColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.userInLobbyListBox = new System.Windows.Forms.ListBox();
             this.chatTableLayout = new System.Windows.Forms.TableLayoutPanel();
             this.chatTabControl = new System.Windows.Forms.TabControl();
             this.serverChatTabPage = new System.Windows.Forms.TabPage();
@@ -80,11 +84,12 @@ namespace ludo_client
             this.rootServerTableLayout.SuspendLayout();
             this.serverChatTableLayout.SuspendLayout();
             this.serverAndGamePanel.SuspendLayout();
+            this.gameTableLayout.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dicePictureBox)).BeginInit();
             this.serverTableLayout.SuspendLayout();
             this.roomListAndLobbyPanel.SuspendLayout();
             this.roomControlsPanel.SuspendLayout();
-            this.gameTableLayout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.playGroundPicture)).BeginInit();
             this.chatTableLayout.SuspendLayout();
             this.chatTabControl.SuspendLayout();
             this.serverChatTabPage.SuspendLayout();
@@ -265,13 +270,119 @@ namespace ludo_client
             // 
             // serverAndGamePanel
             // 
-            this.serverAndGamePanel.Controls.Add(this.serverTableLayout);
             this.serverAndGamePanel.Controls.Add(this.gameTableLayout);
+            this.serverAndGamePanel.Controls.Add(this.serverTableLayout);
             this.serverAndGamePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.serverAndGamePanel.Location = new System.Drawing.Point(3, 3);
             this.serverAndGamePanel.Name = "serverAndGamePanel";
             this.serverAndGamePanel.Size = new System.Drawing.Size(914, 443);
             this.serverAndGamePanel.TabIndex = 7;
+            // 
+            // gameTableLayout
+            // 
+            this.gameTableLayout.ColumnCount = 2;
+            this.gameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.gameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 588F));
+            this.gameTableLayout.Controls.Add(this.gameFieldPanel, 1, 0);
+            this.gameTableLayout.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.gameTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gameTableLayout.Location = new System.Drawing.Point(0, 0);
+            this.gameTableLayout.Margin = new System.Windows.Forms.Padding(0);
+            this.gameTableLayout.Name = "gameTableLayout";
+            this.gameTableLayout.RowCount = 1;
+            this.gameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.gameTableLayout.Size = new System.Drawing.Size(914, 443);
+            this.gameTableLayout.TabIndex = 6;
+            this.gameTableLayout.Visible = false;
+            // 
+            // gameFieldPanel
+            // 
+            this.gameFieldPanel.BackColor = System.Drawing.Color.Transparent;
+            this.gameFieldPanel.BackgroundImage = global::ludo_client.Properties.Resources.ludo_ground;
+            this.gameFieldPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gameFieldPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.gameFieldPanel.ColumnCount = 11;
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gameFieldPanel.Location = new System.Drawing.Point(326, 0);
+            this.gameFieldPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.gameFieldPanel.Name = "gameFieldPanel";
+            this.gameFieldPanel.Padding = new System.Windows.Forms.Padding(8, 6, 0, 0);
+            this.gameFieldPanel.RowCount = 11;
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.090908F));
+            this.gameFieldPanel.Size = new System.Drawing.Size(588, 443);
+            this.gameFieldPanel.TabIndex = 8;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.dicePictureBox, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.rollTheDiceButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.playerListBox, 0, 2);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 101F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 437);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
+            // dicePictureBox
+            // 
+            this.dicePictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.dicePictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dicePictureBox.Location = new System.Drawing.Point(3, 3);
+            this.dicePictureBox.Name = "dicePictureBox";
+            this.dicePictureBox.Size = new System.Drawing.Size(314, 162);
+            this.dicePictureBox.TabIndex = 0;
+            this.dicePictureBox.TabStop = false;
+            // 
+            // rollTheDiceButton
+            // 
+            this.rollTheDiceButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rollTheDiceButton.Enabled = false;
+            this.rollTheDiceButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rollTheDiceButton.Location = new System.Drawing.Point(3, 171);
+            this.rollTheDiceButton.Name = "rollTheDiceButton";
+            this.rollTheDiceButton.Size = new System.Drawing.Size(314, 162);
+            this.rollTheDiceButton.TabIndex = 1;
+            this.rollTheDiceButton.Text = "Roll the Dice";
+            this.rollTheDiceButton.UseVisualStyleBackColor = true;
+            this.rollTheDiceButton.Click += new System.EventHandler(this.rollTheDiceButton_Click);
+            // 
+            // playerListBox
+            // 
+            this.playerListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.playerListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playerListBox.FormattingEnabled = true;
+            this.playerListBox.ItemHeight = 20;
+            this.playerListBox.Location = new System.Drawing.Point(3, 339);
+            this.playerListBox.Name = "playerListBox";
+            this.playerListBox.Size = new System.Drawing.Size(314, 95);
+            this.playerListBox.TabIndex = 2;
             // 
             // serverTableLayout
             // 
@@ -289,75 +400,15 @@ namespace ludo_client
             // 
             // roomListAndLobbyPanel
             // 
+            this.roomListAndLobbyPanel.Controls.Add(this.roomControlsPanel);
             this.roomListAndLobbyPanel.Controls.Add(this.roomList);
             this.roomListAndLobbyPanel.Controls.Add(this.userInLobbyListBox);
-            this.roomListAndLobbyPanel.Controls.Add(this.roomControlsPanel);
             this.roomListAndLobbyPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roomListAndLobbyPanel.Location = new System.Drawing.Point(0, 0);
             this.roomListAndLobbyPanel.Margin = new System.Windows.Forms.Padding(0);
             this.roomListAndLobbyPanel.Name = "roomListAndLobbyPanel";
             this.roomListAndLobbyPanel.Size = new System.Drawing.Size(914, 443);
             this.roomListAndLobbyPanel.TabIndex = 6;
-            // 
-            // roomList
-            // 
-            this.roomList.Alignment = System.Windows.Forms.ListViewAlignment.Left;
-            this.roomList.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.roomList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.roomIDColumnHeader,
-            this.roomNameColumnHeader,
-            this.usersInRoomColumnHeader,
-            this.roomStatusColumnHeader});
-            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roomList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roomList.FullRowSelect = true;
-            this.roomList.GridLines = true;
-            this.roomList.HideSelection = false;
-            this.roomList.Location = new System.Drawing.Point(0, 0);
-            this.roomList.Margin = new System.Windows.Forms.Padding(0);
-            this.roomList.MultiSelect = false;
-            this.roomList.Name = "roomList";
-            this.roomList.ShowGroups = false;
-            this.roomList.Size = new System.Drawing.Size(914, 403);
-            this.roomList.TabIndex = 0;
-            this.roomList.UseCompatibleStateImageBehavior = false;
-            this.roomList.View = System.Windows.Forms.View.Details;
-            this.roomList.Click += new System.EventHandler(this.roomList_Click);
-            this.roomList.DoubleClick += new System.EventHandler(this.roomList_DoubleClick);
-            // 
-            // roomIDColumnHeader
-            // 
-            this.roomIDColumnHeader.Text = "ID";
-            this.roomIDColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.roomIDColumnHeader.Width = 25;
-            // 
-            // roomNameColumnHeader
-            // 
-            this.roomNameColumnHeader.Text = "Room Name";
-            this.roomNameColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.roomNameColumnHeader.Width = 89;
-            // 
-            // usersInRoomColumnHeader
-            // 
-            this.usersInRoomColumnHeader.Text = "Players";
-            this.usersInRoomColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.usersInRoomColumnHeader.Width = 58;
-            // 
-            // roomStatusColumnHeader
-            // 
-            this.roomStatusColumnHeader.Text = "Status";
-            this.roomStatusColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.roomStatusColumnHeader.Width = 439;
-            // 
-            // userInLobbyListBox
-            // 
-            this.userInLobbyListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userInLobbyListBox.FormattingEnabled = true;
-            this.userInLobbyListBox.Location = new System.Drawing.Point(0, 0);
-            this.userInLobbyListBox.Name = "userInLobbyListBox";
-            this.userInLobbyListBox.Size = new System.Drawing.Size(914, 403);
-            this.userInLobbyListBox.TabIndex = 1;
-            this.userInLobbyListBox.Visible = false;
             // 
             // roomControlsPanel
             // 
@@ -439,31 +490,67 @@ namespace ludo_client
             this.createRoomButton.UseVisualStyleBackColor = true;
             this.createRoomButton.Click += new System.EventHandler(this.createRoomButton_Click);
             // 
-            // gameTableLayout
+            // roomList
             // 
-            this.gameTableLayout.ColumnCount = 2;
-            this.gameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.gameTableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 754F));
-            this.gameTableLayout.Controls.Add(this.playGroundPicture, 1, 0);
-            this.gameTableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gameTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.gameTableLayout.Name = "gameTableLayout";
-            this.gameTableLayout.RowCount = 1;
-            this.gameTableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.gameTableLayout.Size = new System.Drawing.Size(914, 443);
-            this.gameTableLayout.TabIndex = 6;
+            this.roomList.Alignment = System.Windows.Forms.ListViewAlignment.Left;
+            this.roomList.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.roomList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.roomIDColumnHeader,
+            this.roomNameColumnHeader,
+            this.usersInRoomColumnHeader,
+            this.roomStatusColumnHeader});
+            this.roomList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roomList.FullRowSelect = true;
+            this.roomList.GridLines = true;
+            this.roomList.HideSelection = false;
+            this.roomList.Location = new System.Drawing.Point(0, 0);
+            this.roomList.Margin = new System.Windows.Forms.Padding(0);
+            this.roomList.MultiSelect = false;
+            this.roomList.Name = "roomList";
+            this.roomList.ShowGroups = false;
+            this.roomList.Size = new System.Drawing.Size(914, 443);
+            this.roomList.TabIndex = 0;
+            this.roomList.UseCompatibleStateImageBehavior = false;
+            this.roomList.View = System.Windows.Forms.View.Details;
+            this.roomList.Click += new System.EventHandler(this.roomList_Click);
+            this.roomList.DoubleClick += new System.EventHandler(this.roomList_DoubleClick);
             // 
-            // playGroundPicture
+            // roomIDColumnHeader
             // 
-            this.playGroundPicture.Cursor = System.Windows.Forms.Cursors.Default;
-            this.playGroundPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.playGroundPicture.Image = global::ludo_client.Properties.Resources.ludo_ground;
-            this.playGroundPicture.Location = new System.Drawing.Point(160, 0);
-            this.playGroundPicture.Margin = new System.Windows.Forms.Padding(0);
-            this.playGroundPicture.Name = "playGroundPicture";
-            this.playGroundPicture.Size = new System.Drawing.Size(754, 443);
-            this.playGroundPicture.TabIndex = 0;
-            this.playGroundPicture.TabStop = false;
+            this.roomIDColumnHeader.Text = "ID";
+            this.roomIDColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomIDColumnHeader.Width = 25;
+            // 
+            // roomNameColumnHeader
+            // 
+            this.roomNameColumnHeader.Text = "Room Name";
+            this.roomNameColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomNameColumnHeader.Width = 89;
+            // 
+            // usersInRoomColumnHeader
+            // 
+            this.usersInRoomColumnHeader.Text = "Players";
+            this.usersInRoomColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.usersInRoomColumnHeader.Width = 58;
+            // 
+            // roomStatusColumnHeader
+            // 
+            this.roomStatusColumnHeader.Text = "Status";
+            this.roomStatusColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomStatusColumnHeader.Width = 439;
+            // 
+            // userInLobbyListBox
+            // 
+            this.userInLobbyListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userInLobbyListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userInLobbyListBox.FormattingEnabled = true;
+            this.userInLobbyListBox.ItemHeight = 25;
+            this.userInLobbyListBox.Location = new System.Drawing.Point(0, 0);
+            this.userInLobbyListBox.Name = "userInLobbyListBox";
+            this.userInLobbyListBox.Size = new System.Drawing.Size(914, 443);
+            this.userInLobbyListBox.TabIndex = 1;
+            this.userInLobbyListBox.Visible = false;
             // 
             // chatTableLayout
             // 
@@ -652,11 +739,12 @@ namespace ludo_client
             this.rootServerTableLayout.ResumeLayout(false);
             this.serverChatTableLayout.ResumeLayout(false);
             this.serverAndGamePanel.ResumeLayout(false);
+            this.gameTableLayout.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dicePictureBox)).EndInit();
             this.serverTableLayout.ResumeLayout(false);
             this.roomListAndLobbyPanel.ResumeLayout(false);
             this.roomControlsPanel.ResumeLayout(false);
-            this.gameTableLayout.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.playGroundPicture)).EndInit();
             this.chatTableLayout.ResumeLayout(false);
             this.chatTabControl.ResumeLayout(false);
             this.serverChatTabPage.ResumeLayout(false);
@@ -714,7 +802,11 @@ namespace ludo_client
         private TextBox messageTextBox;
         private Button sendMessageButton;
         private TableLayoutPanel gameTableLayout;
-        private PictureBox playGroundPicture;
+        private TableLayoutPanel gameFieldPanel;
+        private TableLayoutPanel tableLayoutPanel1;
+        private PictureBox dicePictureBox;
+        private Button rollTheDiceButton;
+        private ListBox playerListBox;
     }
 }
 

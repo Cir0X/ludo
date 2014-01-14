@@ -16,6 +16,7 @@ namespace ludo_server.dto
         private List<int> readyUsersInRoomIDs;
         private String roomStatus;
         private String roomAction;
+        private Game game;
 
         public int RoomID
         {
@@ -59,10 +60,17 @@ namespace ludo_server.dto
             set { roomAction = value; }
         }
 
+        public Game Game
+        {
+            get { return game; }
+            set { game = value; }
+        }
+
         public Room()
         {
             this.userInRoomIDs = new List<int>();
             this.readyUsersInRoomIDs = new List<int>();
+            this.game = new Game();
         }
 
     }

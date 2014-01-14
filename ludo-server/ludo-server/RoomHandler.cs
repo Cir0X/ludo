@@ -67,6 +67,7 @@ namespace ludo_server
 
         // Sets the Room Moderator to the first User in Room List
         private Room getRoomModerator(Room room) {
+            room.ReadyUsersInRoomIDs.Clear(); // when the moderator changes clear the ready user list
             room.RoomModeratorUserID = room.UserInRoomIDs[0];
             return room;
         }
@@ -99,7 +100,7 @@ namespace ludo_server
         {
             List<int> leavingUserID = Main.ludo.Rooms[room.RoomID].UserInRoomIDs.Except(room.UserInRoomIDs).ToList();
             Console.WriteLine("Leaving User ID: " + leavingUserID[0]);
-            if (leavingUserID.Count > 0)
+            if (leavingUserID.Count > 0 && Main.ludo.Users.Contains(Main.ludo.Users[leavingUserID[0]]))
             {
                 Main.ludo.Users[leavingUserID[0]].CurrentRoomID = -1;
             }
@@ -163,13 +164,25 @@ namespace ludo_server
             room.RoomStatus = "Starting";
             Main.ludo.Rooms[room.RoomID] = room;
 
-            for (int i = 5; i >= 0; i--)
+            for (int i = 5; i > 0; i--)
             {
                 room.RoomAction = "Starting in " + i;
                 Console.WriteLine(room.RoomAction + i);
                 sendUpdatedRoomList();
                 System.Threading.Thread.Sleep(1000);
             }
+
+            // Adding all ready Users and the room moderator to the userInGame List
+            Main.ludo.Rooms[room.RoomID].Game.UserInGameIDs.Add(room.RoomModeratorUserID);
+            foreach (var userID in Main.ludo.Rooms[room.RoomID].ReadyUsersInRoomIDs) 
+            {
+                Main.ludo.Rooms[room.RoomID].Game.UserInGameIDs.Add(userID);
+            }
+
+            room.RoomAction = "Starting now ...";
+            sendUpdatedRoomList();
+            room.RoomStatus = "Playing";
+            sendUpdatedRoomList();
         }
 
         private void sendUpdatedRoomList()

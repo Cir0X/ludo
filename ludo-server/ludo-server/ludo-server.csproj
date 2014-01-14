@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="ChatHandler.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="GameHandler.cs" />
+    <Compile Include="LudoLogicHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="OnlineUserHandler.cs" />

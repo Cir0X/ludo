@@ -19,10 +19,18 @@ namespace ludo_client
         private ListBox usersInLobbyListBox;
         private Button readyButton;
         private Button startButton;
-        Button backButton;
+        private Button backButton;
         private RichTextBox roomRichTextBox;
+        private TableLayoutPanel gamePanel;
+        private TableLayoutPanel gameFieldPanel;
+        private PictureBox dicePictureBox;
+        private Button rollTheDiceButton;
+        private ListBox playerListBox;
+        private GameHandler gameHandler;
 
-        public RoomHandler(ListView roomList, ListBox usersInLobbyListBox, Button readyButton, Button startButton, Button backButton, RichTextBox roomRichTextBox)
+        public RoomHandler(ListView roomList, ListBox usersInLobbyListBox, Button readyButton, Button startButton, Button backButton,
+            RichTextBox roomRichTextBox, TableLayoutPanel gamePanel, TableLayoutPanel gameFieldPanel, PictureBox dicePictureBox,
+            Button rollTheDiceButton, ListBox playerListBox)
         {
             this.roomList = roomList;
             this.usersInLobbyListBox = usersInLobbyListBox;
@@ -30,6 +38,11 @@ namespace ludo_client
             this.startButton = startButton;
             this.backButton = backButton;
             this.roomRichTextBox = roomRichTextBox;
+            this.gamePanel = gamePanel;
+            this.gameFieldPanel = gameFieldPanel;
+            this.dicePictureBox = dicePictureBox;
+            this.rollTheDiceButton = rollTheDiceButton;
+            this.playerListBox = playerListBox;
             websocket = new WebSocket("ws://" + ClientBase.serverAdress + PORT_ROUTE);
             websocket.MessageReceived += new EventHandler<MessageReceivedEventArgs>(handleRooms);
             websocket.Open();
@@ -82,6 +95,10 @@ namespace ludo_client
             Main.ludo.Users[ClientBase.myUserListIndex].CurrentRoomID = -1; // set current room id back to default
             room.RoomAction = "leaveRoom";
             websocket.Send(JsonConvert.SerializeObject(room));
+            
+            // Hide all room action buttons when the user leaves the room
+            updateButton(this.startButton, false, false);
+            updateButton(this.readyButton, false, false);
         }
 
         public void setReady(Room room)
@@ -121,28 +138,58 @@ namespace ludo_client
 
                 if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomModeratorUserID == ClientBase.myUserListIndex)
                 {
-                    // Enable Start button when this user is moderator
-                    updateButton(this.readyButton, false, true);
-                    updateButton(this.startButton, true, true);
+                    updateButton(this.backButton, true, true);
+                    if (Main.ludo.Rooms[ClientBase.roomListSelectionID].ReadyUsersInRoomIDs.Count > 0)
+                    {
+                        // enable startbutton when at least one User is ready and im the moderator
+                        updateButton(this.startButton, true, true);
+                    }
+                    else
+                    {
+                        // disable startbutton when not one User is ready and im the moderator
+                        updateButton(this.startButton, true, false);
+                    }
+                    updateButton(this.readyButton, false, false);
                 }
                 else
                 {
                     updateButton(this.readyButton, true, true);
+                    updateButton(this.startButton, false, false);
                 }
 
                 // when the game is starting
-                if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomAction.Contains("Starting in"))
+                if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomAction.Contains("Starting"))
                 {
                     updateRoomMessageList(this.roomRichTextBox, Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomAction);
 
                     if (Main.ludo.Users[ClientBase.roomListSelectionID].StatusInRoom)
                     {
-                        // deactivate back and ready button when the user was already ready when the game starts
+                        // deactivate back and ready button when the user was already ready when the game has started
                         updateButton(this.readyButton, true, false);
                         updateButton(this.backButton, true, false);
                     }
+
+                    if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomModeratorUserID == ClientBase.myUserListIndex)
+                    {
+                        updateButton(this.startButton, true, false);
+                        updateButton(this.backButton, true, false);
+                    }
+                }
+
+                // when the game is running and I was ready or i´m the room moderator
+                if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomStatus.Equals("Playing") && 
+                    (Main.ludo.Rooms[ClientBase.roomListSelectionID].ReadyUsersInRoomIDs.Contains(ClientBase.myUserListIndex) ||
+                    Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomModeratorUserID == ClientBase.myUserListIndex))
+                {
+                    this.gameHandler = new GameHandler(this.gamePanel, this.gameFieldPanel, this.dicePictureBox, this.rollTheDiceButton,
+                        this.playerListBox);
                 }
             }
+        }
+
+        public void rollTheDice()
+        {
+            this.gameHandler.rollTheDice();
         }
 
         // UI Methods
@@ -172,16 +219,6 @@ namespace ludo_client
                 if (Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomModeratorUserID == userID)
                 {
                     usersInLobbyListBox.Items.Add(Main.ludo.Users[userID].UserName + " [Moderator]");
-
-                    if (Main.ludo.Rooms[ClientBase.roomListSelectionID].ReadyUsersInRoomIDs.Count > 0 &&
-                        Main.ludo.Rooms[ClientBase.roomListSelectionID].RoomStatus != "Starting")
-                    {
-                        updateStartButton(this.startButton, true);
-                    }
-                    else
-                    {
-                        updateStartButton(this.startButton, false);
-                    }
                 }
                 else
                 {
@@ -234,23 +271,7 @@ namespace ludo_client
                 return;
             }
             button.Visible = isVisible;
-        }
-
-        private void updateStartButton(Button button, bool isRoomStartAble)
-        {
-            if (button.InvokeRequired)
-            {
-                button.Invoke(new MethodInvoker(() => updateStartButton(button, isRoomStartAble)));
-                return;
-            }
-            if (isRoomStartAble)
-            {
-                button.Enabled = true;
-            }
-            else
-            {
-                button.Enabled = false;
-            }
+            button.Enabled = enable;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace ludo_server
             OnlineUserHandler onlineUserHandler = new OnlineUserHandler();
             ChatHandler chatHandler = new ChatHandler();
             RoomHandler roomHandler = new RoomHandler();
+            GameHandler gameHandler = new GameHandler();
             Console.Read();
         }
     }
